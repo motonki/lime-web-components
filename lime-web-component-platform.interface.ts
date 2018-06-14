@@ -2,7 +2,7 @@
 // plugins will use this interface to make calls to the platform
 
 export interface LimeWebComponentPlatform {
-  platformType: string;
+  platformType: "LimeCRMWebClient" | "LimeCRMDesktop";
 
   alertMessage?(message: string): void;
 
