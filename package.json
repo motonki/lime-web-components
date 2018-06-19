@@ -1,5 +1,5 @@
 {
-  "name": "lime-web-component-platform",
+  "name": "lime-web-component-interfaces",
   "version": "1.0.0",
   "description": "",
   "main": "lime-web-component-platform.interface.ts",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lundalogik/lime-web-component-platform.git"
+    "url": "git+https://github.com/Lundalogik/lime-web-component-interfaces.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Lundalogik/lime-web-component-platform/issues"
+    "url": "https://github.com/Lundalogik/lime-web-component-interfaces/issues"
   },
-  "homepage": "https://github.com/Lundalogik/lime-web-component-platform#readme"
+  "homepage": "https://github.com/Lundalogik/lime-web-component-interfaces#readme"
 }
