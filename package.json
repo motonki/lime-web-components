@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "repository": "http://npm.lundalogik.com:4873"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lundalogik/lime-web-component-interfaces.git"
