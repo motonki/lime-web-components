@@ -100,16 +100,10 @@ const nop = () => null;
  * @returns {Function} unsubscribe function
  */
 function subscribe(key, property) {
-    const state = this.platform.service.get('state');
-    if (!state) {
-        console.error("Service 'state' not found");
-        return nop;
-    }
-
     if (!this.element || !(this.element instanceof HTMLElement)) {
         console.error('HTMLElement not found', this.element);
         return nop;
     }
 
-    return state.connect(key, this.element, property);
+    return this.platform.state.connect(key, this.element, property);
 }

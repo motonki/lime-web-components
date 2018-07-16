@@ -1,4 +1,7 @@
-import { ServiceContainer } from "./service-container.interface";
+import { StateService } from "./service/state-service.interface";
+import { TranslateService } from "./service/translate-service.interface";
+import { HttpService } from "./service/http-service.interface";
+
 
 // lib with functions that the platform can implement
 // plugins will use this interface to make calls to the platform
@@ -6,5 +9,9 @@ import { ServiceContainer } from "./service-container.interface";
 export interface LimeWebComponentPlatform {
   type: "LimeCRMWebClient" | "LimeCRMDesktopClient";
 
-  service: ServiceContainer;
+  state: StateService;
+
+  translate: TranslateService;
+
+  http: HttpService;
 }
