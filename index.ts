@@ -1,3 +1,4 @@
+export { LimeWebComponentContext } from './src/interfaces/lime-web-component-context.interface';
 export { LimeWebComponentPlatform } from './src/interfaces/lime-web-component-platform.interface';
 export { LimeWebComponent } from './src/interfaces/lime-web-component.interface';
 export { HttpService } from './src/interfaces/service/http-service.interface';
