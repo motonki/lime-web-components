@@ -1,5 +1,3 @@
-import { LimeWebComponentPlatform } from "./lime-web-component-platform.interface";
-// import { ActionStateEnum } from '../enums/action-state.enum';
 
 /**
  * Interface that actions must implement
@@ -20,20 +18,25 @@ export interface LimeWebComponentAction {
     readonly label?: string;
 
     /**
-     * Checks if the action is enabled at the moment
+     * Checks if this actions wants to handle current context
      * 
-     * @param platform A reference to the platform
+     * @param limetype
+     * @param id 
      */
-    state(platform: LimeWebComponentPlatform,
-          limetype?: string,
-          id?: number): any;
+    handled(limetype: string, id: number): boolean;
+
+    /**
+     * Checks if this actions is enabled for current context
+     * 
+     * @param limetype 
+     * @param id 
+     */
+    enabled(limetype: string, id: number): boolean;
     
     /**
      * Executes the action
      * 
      * @param platform A reference to the platform
      */
-    execute(platform: LimeWebComponentPlatform,
-            limetype?: string,
-            id?: number): void;
+    execute(limetype: string, id: number): void;
 }
