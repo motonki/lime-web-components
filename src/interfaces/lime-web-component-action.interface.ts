@@ -18,7 +18,9 @@ export interface LimeWebComponentAction {
     readonly label?: string;
 
     /**
-     * Checks if this actions wants to handle current context
+     * Return true if current context should be handled by this action.
+     * Return false to allow the consumer to look for another action
+     * that is willing to handle current context.
      * 
      * @param limetype
      * @param id 
@@ -26,7 +28,7 @@ export interface LimeWebComponentAction {
     handled(limetype: string, id: number): boolean;
 
     /**
-     * Checks if this actions is enabled for current context
+     * Return true if this action is enabled for current context.
      * 
      * @param limetype 
      * @param id 
