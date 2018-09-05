@@ -5,17 +5,15 @@
 export interface LimeWebComponentAction {
 
     /**
+     * The name of the action which is what ActionService.get matches on
+     * when returning its list of actions.
      * 
+     * To override a core action you give your action the same name as the
+     * core action to override as in limeobject.create
+     * To create a custom action you give your action a unique name and a
+     * rule of thumb is to simply prefix with your addons name.
      */
     readonly name: string;
-
-    /**
-     * A translation key to get a localized name. This is useful when
-     * the action will i.e extend a list of actions rather than overriding
-     * an existing one
-     * 
-     */
-    readonly label?: string;
 
     /**
      * Return true if current context should be handled by this action.
