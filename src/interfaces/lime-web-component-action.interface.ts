@@ -1,4 +1,6 @@
 
+import { LimeWebComponentContext } from "./lime-web-component-context.interface";
+
 /**
  * Interface that actions must implement
  */
@@ -23,7 +25,7 @@ export interface LimeWebComponentAction {
      * @param limetype
      * @param id 
      */
-    handled(limetype: string, id: number): boolean;
+    handled(context: LimeWebComponentContext): boolean;
 
     /**
      * Return true if this action is enabled for current context.
@@ -31,12 +33,12 @@ export interface LimeWebComponentAction {
      * @param limetype 
      * @param id 
      */
-    enabled(limetype: string, id: number): boolean;
+    enabled(context: LimeWebComponentContext): boolean;
     
     /**
      * Executes the action
      * 
      * @param platform A reference to the platform
      */
-    execute(limetype: string, id: number): void;
+    execute(context: LimeWebComponentContext): void;
 }
