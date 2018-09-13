@@ -1,23 +1,30 @@
 {
-  "name": "lime-web-component-interfaces",
-  "version": "1.3.0",
-  "description": "",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "repository": "http://npm.lundalogik.com:4873"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lundalogik/lime-web-component-interfaces.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Lundalogik/lime-web-component-interfaces/issues"
-  },
-  "homepage": "https://github.com/Lundalogik/lime-web-component-interfaces#readme"
+    "name": "lime-web-component-interfaces",
+    "version": "1.3.1",
+    "description": "Lime web components",
+    "author": "Lime Technologies",
+    "homepage": "https://github.com/Lundalogik/lime-web-component-interfaces#readme",
+    "keywords": [],
+    "license": "ISC",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^3.0.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lundalogik/lime-web-component-interfaces.git"
+    },
+    "publishConfig": {
+        "repository": "http://npm.lundalogik.com:4873"
+    },
+    "bugs": {
+        "url": "https://github.com/Lundalogik/lime-web-component-interfaces/issues"
+    }
 }
