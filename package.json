@@ -12,7 +12,8 @@
         "dist/"
     ],
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "release": "node prepare-release.js && npm publish"
     },
     "devDependencies": {
         "typescript": "^3.0.3"

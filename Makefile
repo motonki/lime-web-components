@@ -8,4 +8,4 @@ build:
 .PHONY: publish
 publish:
 	@# Bumps and publishes.
-	docker run --rm -e CI -e GH_TOKEN -e NPM_TOKEN -w /lime $(DOCKER_IMAGE) npm publish
+	docker run --rm -e CI -e GH_TOKEN -e NPM_TOKEN -w /lime $(DOCKER_IMAGE) npm run release
