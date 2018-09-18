@@ -1,6 +1,7 @@
 import { StateService } from "./service/state-service.interface";
 import { TranslateService } from "./service/translate-service.interface";
 import { HttpService } from "./service/http-service.interface";
+import { RouteService } from "./service/route-service.interface";
 
 
 // lib with functions that the platform can implement
@@ -14,4 +15,6 @@ export interface LimeWebComponentPlatform {
   translate: TranslateService;
 
   http: HttpService;
+
+  route: RouteService;
 }
