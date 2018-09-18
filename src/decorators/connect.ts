@@ -1,14 +1,18 @@
+import { StateSelector, StateOptions, StateService } from "../interfaces/service/state-service.interface";
+import { LimeWebComponentPlatform } from "../interfaces/lime-web-component-platform.interface";
+
 const connections = [];
 
 /**
- * Connect a property to a key in the state. 
+ * Connect a property to a property in the state.
  * The connected property will automatically receive state updates
- * 
- * @param {string} key state key to connect to
+ *
+ * @param {StateSelector} selector state selector describing what to connect to
+ * @param {StateOptions} options options for the selector
  */
-export function Connect(key) {
-    return (target, property) => {
-        const connection = initConnection(target, property, key);
+export function Connect(selector: StateSelector, options: StateOptions = {}) {
+    return (target: object, property: string) => {
+        const connection = initConnection(target, property, selector, options);
 
         if (connection.mappings.length === 1) {
             extendLifecycleMethods(target, connection.mappings);
@@ -18,14 +22,15 @@ export function Connect(key) {
 
 /**
  * Initialize a connection from the state to an object property
- * 
+ *
  * @param {object} target the class the property belongs to
  * @param {string} property name of the property on the object
- * @param {string} key name of key in the state
- * 
+ * @param {StateSelector} selector state selector
+ * @param {StateOptions} options options for the selector
+ *
  * @returns {object} a connection object that holds all mappings for the target
  */
-function initConnection(target, property, key) {
+function initConnection(target: object, property: string, selector: StateSelector, options: StateOptions) {
     let connection = connections.find(item => item.target === target);
     if (!connection) {
         connection = {
@@ -36,7 +41,8 @@ function initConnection(target, property, key) {
     }
 
     connection.mappings.push({
-        key,
+        selector,
+        options,
         property
     });
 
@@ -45,16 +51,16 @@ function initConnection(target, property, key) {
 
 /**
  * Extend the lifecycle methods on the target
- * 
+ *
  * @param {*} target the target class to extend
- * @param {*} mappings 
+ * @param {*} mappings
  */
 function extendLifecycleMethods(target, mappings) {
     const componentWillLoad = target.componentWillLoad;
     const componentDidUnload = target.componentDidUnload;
     let subscriptions = [];
 
-    // Extend componentWillLoad with a new function that will 
+    // Extend componentWillLoad with a new function that will
     // subscribe to state changes
     target.componentWillLoad = function(...args) {
         if (componentWillLoad) {
@@ -71,7 +77,7 @@ function extendLifecycleMethods(target, mappings) {
                 subscriptions.push(subscription);
             }
 
-            const unsubscribe = subscribe.apply(this, [mapping.key, mapping.property]);
+            const unsubscribe = subscribe.apply(this, [mapping.selector, mapping.options, mapping.property]);
             subscription.unsubscribes.push(unsubscribe);
         });
     };
@@ -93,17 +99,20 @@ const nop = () => null;
 
 /**
  * Subscribe to state changes
- * 
- * @param {*} key state key to subscribe to
- * @param {*} property object property 
- * 
+ *
+ * @param {StateSelector} selector state selector
+ * @param {StateOptions} options options for the selector
+ * @param {string} property object property name
+ *
  * @returns {Function} unsubscribe function
  */
-function subscribe(key, property) {
+function subscribe(selector: StateSelector, options: StateOptions, property: string) {
     if (!this.element || !(this.element instanceof HTMLElement)) {
         console.error('HTMLElement not found', this.element);
         return nop;
     }
 
-    return this.platform.state.connect(key, this.element, property);
+    const state: StateService = this.platform.state;
+
+    return state.connect(selector, this.element, property, options);
 }
