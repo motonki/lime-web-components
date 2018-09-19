@@ -46,4 +46,6 @@ export enum StateSelector {
  */
 export interface StateOptions {
     arguments?: any[];
+    map?: { (state: any): any }[];
+    filter?: { (state: any): boolean }[];
 }
