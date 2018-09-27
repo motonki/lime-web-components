@@ -14,21 +14,28 @@ export interface StateService {
      *
      * @returns {Function} unsubscribe function
      */
-    connect(selector: StateSelector, target: any, property: string, options: StateOptions): () => void;
+    connect(
+        selector: StateSelector,
+        target: any,
+        property: string,
+        options: StateOptions
+    ): () => void;
 }
 
 /**
  * Selector describing what can be connected to in the state
  */
 export enum StateSelector {
-    Limetypes = 'LIMETYPES',
-    Limeobjects = 'LIMEOBJECTS',
-    CurrentUser = 'CURRENT_USER'
+    Limetypes = "LIMETYPES",
+    Limeobjects = "LIMEOBJECTS",
+    CurrentUser = "CURRENT_USER",
+    Session = "SESSION",
+    ApplicationName = "APPLICATION_NAME"
 }
 
 /**
  * Options for the state selector
  */
 export interface StateOptions {
-    arguments?: any[]
+    arguments?: any[];
 }
