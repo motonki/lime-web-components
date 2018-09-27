@@ -45,7 +45,20 @@ export enum StateSelector {
  * Options for the state selector
  */
 export interface StateOptions {
-    arguments?: any[];
-    map?: { (state: any): any }[];
-    filter?: { (state: any): boolean }[];
+    /**
+     * Arguments that will be passed to the state selector
+     */
+    arguments?: any[],
+
+    /**
+     * List of functions that will be used to map the state.
+     * The functions will be bound to the web component instance
+     */
+    map?: { (state: any): any }[],
+
+    /**
+     * List of functions that will be used to filter any changes to the state.
+     * The functions will be bound to the web component instance
+     */
+    filter?: { (state: any): boolean }[]
 }

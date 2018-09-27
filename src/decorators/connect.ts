@@ -1,5 +1,4 @@
 import { StateSelector, StateOptions, StateService } from "../interfaces/service/state-service.interface";
-import { LimeWebComponentPlatform } from "../interfaces/lime-web-component-platform.interface";
 
 const connections = [];
 
@@ -112,7 +111,44 @@ function subscribe(selector: StateSelector, options: StateOptions, property: str
         return nop;
     }
 
+    const myOptions = {...options};
+    bindFunctions(myOptions, this);
+
     const state: StateService = this.platform.state;
 
-    return state.connect(selector, this.element, property, options);
+    return state.connect(selector, this.element, property, myOptions);
+}
+
+/**
+ * Bind connect functions to the current scope
+ *
+ * @param {StateOptions} options options for the selector
+ * @param {*} scope the current scope to bind to
+ */
+function bindFunctions(options: StateOptions, scope) {
+    if (options.filter) {
+        options.filter = options.filter.map(func => func.bind(scope));
+    }
+
+    if (options.map) {
+        options.map = options.map.map(func => func.bind(scope));
+    }
+}
+
+/**
+ * Helper function that can be used in a Connect decorator
+ * to map out the current limeobject from the state
+ *
+ * @param {object} limeobjects all the limeobjects in the state
+ *
+ * @return {object} current limeobject
+ */
+export function currentLimeobject(limeobjects: object) {
+    const { limetype, id } = this.context;
+
+    if (!limeobjects[limetype]) {
+        return undefined;
+    }
+
+    return limeobjects[limetype].find(object => object.id === id);
 }

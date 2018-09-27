@@ -8,4 +8,4 @@ export { StateService, StateSelector, StateOptions } from './interfaces/service/
 export { TranslateService } from './interfaces/service/translate-service.interface';
 export { NotificationService, ConfirmOptions, AlertOptions, NotificationOptions } from './interfaces/service/notification-service.interface';
 
-export { Connect } from "./decorators/connect";
+export { Connect, currentLimeobject } from "./decorators/connect";
