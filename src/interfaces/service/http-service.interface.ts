@@ -17,7 +17,7 @@ export interface HttpService {
    * @param {object} data - The payload you want to send to the server.
    * @returns {Promise}
    */
-  post(url: string, data: {}): Promise<{}>;
+  post(url: string, data?: {}): Promise<{}>;
 
   /**
    * Sends a put request.
@@ -26,7 +26,7 @@ export interface HttpService {
    * @param {object} data - The payload you want to send to the server.
    * @returns {Promise}
    */
-  put(url: string, data: {}): Promise<{}>;
+  put(url: string, data?: {}): Promise<{}>;
 
   /**
    * Sends a delete request.
