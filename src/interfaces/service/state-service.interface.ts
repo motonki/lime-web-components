@@ -2,7 +2,6 @@
  * Service for letting a Lime web component subscribe to state changes
  */
 export interface StateService {
-
     /**
      * Connect an object property to the state
      * The connected property will be updated when changes in the state occur
@@ -14,12 +13,21 @@ export interface StateService {
      *
      * @returns {Function} unsubscribe function
      */
+
     connect(
         selector: StateSelector,
         target: any,
         property: string,
         options: StateOptions
     ): () => void;
+
+    /**
+     * Load the specified limeobject into the state
+     *
+     * @param {string} limetype
+     * @param {number} id
+     */
+    loadObject(limetype: string, id: number): void;
 }
 
 /**
