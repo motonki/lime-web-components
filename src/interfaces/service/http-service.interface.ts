@@ -20,6 +20,15 @@ export interface HttpService {
     post(url: string, data?: {}): Promise<{}>;
 
     /**
+     * Sends a patch request.
+     *
+     * @param {string} url - Url to resource (for instance /api/v1/limetypes).
+     * @param {object} data - The payload you want to send to the server.
+     * @returns {Promise}
+     */
+    patch(url: string, data?: {}): Promise<{}>;
+
+    /**
      * Sends a put request.
      *
      * @param {string} url - Url to resource (for instance /api/v1/limetypes).
