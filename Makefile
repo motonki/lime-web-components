@@ -1,4 +1,10 @@
 DOCKER_IMAGE = lime-web-component-interfaces
+DOCKER_DOCS_IMAGE = lime-web-component-interfaces-docs
+
+.PHONY: build-docs
+build-docs:
+	@# Builds the docs image for lime-web-component-interfaces
+	docker build --file Dockerfile.docs --pull -t $(DOCKER_DOCS_IMAGE) .
 
 .PHONY: build
 build:
