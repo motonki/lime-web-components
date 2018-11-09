@@ -20,5 +20,5 @@ export interface LimeWebComponentPlatform {
     route: RouteService;
 
     notifications: NotificationService;
-    action: ActionService;
+    action?: ActionService;
 }
