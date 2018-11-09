@@ -16,5 +16,5 @@ export interface RouteService {
     /**
      * @param {string} limetype the limetype of the table to route to
      */
-    table(limetype: string);
+    table(limetype: string, filter?: Object);
 }
