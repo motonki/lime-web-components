@@ -3,53 +3,18 @@
  */
 export interface StateService {
     /**
-     * Connect an object property to the state
-     * The connected property will be updated when changes in the state occur
+     * Subscribe to state changes
      *
-     * @param {StateSelector} selector state selector
-     * @param {object} target object to update when state changes occur
-     * @param {string} property name of the property on the target object to update
-     * @param {StateOptions} options options for the selector
-     *
-     * @returns {Function} unsubscribe function
+     * @param callback
+     * @param options
      */
-
-    connect(
-        selector: StateSelector,
-        target: any,
-        property: string,
-        options: StateOptions
-    ): () => void;
-
-    /**
-     * Load the specified limeobject into the state
-     *
-     * @param {string} limetype
-     * @param {number} id
-     */
-    loadObject(limetype: string, id: number): void;
-}
-
-/**
- * Selector describing what can be connected to in the state
- */
-export enum StateSelector {
-    Limetypes = "LIMETYPES",
-    Limeobjects = "LIMEOBJECTS",
-    CurrentUser = "CURRENT_USER",
-    Session = "SESSION",
-    ApplicationName = "APPLICATION_NAME"
+    subscribe(callback: () => void, options?: StateOptions): () => void;
 }
 
 /**
  * Options for the state selector
  */
 export interface StateOptions {
-    /**
-     * Arguments that will be passed to the state selector
-     */
-    arguments?: any[],
-
     /**
      * List of functions that will be used to map the state.
      * The functions will be bound to the web component instance
@@ -62,3 +27,5 @@ export interface StateOptions {
      */
     filter?: { (state: any): boolean }[]
 }
+
+export * from './state/limeobjects-service.interface';

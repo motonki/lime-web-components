@@ -12,11 +12,10 @@
         "dist/"
     ],
     "scripts": {
-        "build": "tsc",
+        "build": "tsc && node build.js",
         "start": "docz dev",
         "docz:build": "docz build",
-        "docz:serve": "serve .docz/dist --single",
-        "release": "npm run build && semantic-release"
+        "docz:serve": "serve .docz/dist --single"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.1.2",

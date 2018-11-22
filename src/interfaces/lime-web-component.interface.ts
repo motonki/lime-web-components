@@ -14,9 +14,4 @@ export interface LimeWebComponent {
    * The context this component belongs to
    */
   context: LimeWebComponentContext;
-
-  /**
-   * Reference to the root DOM element of the web component
-   */
-  element: HTMLElement;
 }
