@@ -6,7 +6,7 @@ export interface LimetypesOptions extends StateOptions {
 }
 
 /**
- * Get a list of limetypes
+ * Gets an object with all limetypes where name is used as key
  */
 export function Limetypes(options: LimetypesOptions = {}) {
     const config: StateDecoratorConfig = {
@@ -28,8 +28,8 @@ export function CurrentLimetype(options: StateOptions = {}) {
     return createStateDecorator(options, config);
 }
 
-function currentLimetype(limetypes: [any]) {
+function currentLimetype(limetypes: any) {
     const { limetype } = this.context;
 
-    return limetypes.find(lt => lt.name === limetype);
+    return limetypes[limetype];
 }
