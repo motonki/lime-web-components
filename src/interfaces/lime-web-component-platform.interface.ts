@@ -16,6 +16,7 @@ export interface LimeWebComponentPlatform {
         limetypes: StateService;
         limeobjects: LimeobjectsStateService;
         application: StateService;
+        configs: StateService;
     };
 
     translate: TranslateService;
