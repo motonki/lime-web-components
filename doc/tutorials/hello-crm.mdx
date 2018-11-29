@@ -84,14 +84,12 @@ the name of the company, and a button that changes the name once it's been press
 To get the name of the company we need to define a property on our component and connect it to the state.
 
 ```tsx
-import { Connect, StateSelector, currentLimeobject } from 'lime-web-component-interfaces';
+import { CurrentLimeobject } from 'lime-web-component-interfaces/state';
 
 export class HelloCrm implements LimeWebComponent {
-    @Connect(StateSelector.Limeobjects, {
-        map: [currentLimeobject]
-    })
-    @Prop()
-    public company: object = {};
+    @CurrentLimeobject()
+    @State()
+    private company: object = {};
 
     ...
 }
@@ -109,7 +107,7 @@ public render() {
 }
 ```
 
-> **Note!** There is an issue at the moment where the `@Connect` decorator does not function properly unless the
+> **Note!** There is an issue at the moment where the state decorators does not function properly unless the
 > `componentWillLoad` and `componentDidUnload` lifecycle hooks are implemented in the component. The methods do not
 > have to do anything, they just have to exist.
 

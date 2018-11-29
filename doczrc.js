@@ -38,8 +38,7 @@ export default {
                 'LimeWebComponent',
                 'LimeWebComponentPlatform',
                 'LimeWebComponentContext',
-                'LimeWebComponentAction',
-                'Connect'
+                'LimeWebComponentAction'
             ]
         }
     ]
