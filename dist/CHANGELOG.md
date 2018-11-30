@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.0.0...v2.1.0) (2018-11-30)
+
+
+### Features
+
+* **release:** force new release ([17e2bc8](https://github.com/Lundalogik/lime-web-component-interfaces/commit/17e2bc8))
+
 # [2.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v1.10.0...v2.0.0) (2018-11-30)
 
 
