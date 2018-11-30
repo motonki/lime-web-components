@@ -6,3 +6,4 @@ packageJson.main = 'index.js';
 packageJson.types = 'index.d.ts';
 
 fs.writeFileSync('dist/package.json', JSON.stringify(packageJson, null, '\t'), 'utf8');
+fs.writeFileSync('dist/.npmrc', fs.readFileSync('.npmrc', 'utf8'), 'utf8');
