@@ -1,4 +1,4 @@
-Lime Web Component interfaces!
+Lime Web Component interfaces
 
 ## Deploy documentation
 1. Run `make build-docs`
