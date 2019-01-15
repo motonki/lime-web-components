@@ -6,9 +6,10 @@ export interface HttpService {
      * Sends a get request.
      *
      * @param {string} url - Url to resource (for instance /api/v1/limetypes).
+     * @param {object} params - The parameters you want to send to the server.
      * @returns {Promise}
      */
-    get(url: string): Promise<any>;
+    get(url: string, params?: {}): Promise<any>;
 
     /**
      * Sends a post request.
