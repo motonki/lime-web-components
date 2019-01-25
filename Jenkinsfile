@@ -10,9 +10,13 @@ pipeline {
     }
 
     stages {
-        stage('Build and test') {
+        stage('Create docker container') {
             steps {
                 sh 'make build'
+            }
+        }
+        stage('Lint commits') {
+            steps {
                 script {
                     if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
                         commitHashes = sh (
@@ -42,7 +46,7 @@ pipeline {
             }
         }
 
-        stage('Publish package') {
+        stage('Build and release') {
             environment {
                 GH_TOKEN = credentials('github-access-token')
                 NPM_TOKEN = credentials('devnpm-access-token')
@@ -57,14 +61,14 @@ pipeline {
             }
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'master') {
-                        echo 'On master. Running release step.'
+                    if (env.BRANCH_NAME == 'master' || (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-')) {
+                        echo 'On master or release-branch. Running release step.'
                         sh 'make release'
                     } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
                         echo 'On PR branch. Running release step in dry-run mode.'
                         sh "make release_dry_run BRANCH=${env.BRANCH_NAME}"
                     } else {
-                        echo('Not on master nor a PR branch. Skipping release step.')
+                        echo('Unknown branch type. Skipping release step.')
                     }
                 }
             }
