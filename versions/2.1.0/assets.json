@@ -1,5 +1,5 @@
 {
-  "app.js": "lime-web-component-interfaces/static/js/app.3181681f.js",
+  "app.js": "lime-web-component-interfaces/static/js/app.b01ebddb.js",
   "doc-index.js": "lime-web-component-interfaces/static/js/doc-index.fc470691.js",
   "doc-api-reference-action-service.js": "lime-web-component-interfaces/static/js/doc-api-reference-action-service.ab85d0ca.js",
   "doc-api-reference-http-service.js": "lime-web-component-interfaces/static/js/doc-api-reference-http-service.a457bf52.js",
@@ -18,10 +18,10 @@
   "doc-concepts-platform-services.js": "lime-web-component-interfaces/static/js/doc-concepts-platform-services.88a5d6e4.js",
   "doc-concepts-slots.js": "lime-web-component-interfaces/static/js/doc-concepts-slots.8dd954d8.js",
   "doc-concepts-state.js": "lime-web-component-interfaces/static/js/doc-concepts-state.485ee8a9.js",
-  "doc-installation-getting-started.js": "lime-web-component-interfaces/static/js/doc-installation-getting-started.158c2e82.js",
-  "doc-tutorials-hello-crm.js": "lime-web-component-interfaces/static/js/doc-tutorials-hello-crm.042b770f.js",
+  "doc-tutorials-hello-crm.js": "lime-web-component-interfaces/static/js/doc-tutorials-hello-crm.c283481a.js",
+  "doc-installation-getting-started.js": "lime-web-component-interfaces/static/js/doc-installation-getting-started.0704a568.js",
   "doc-tutorials-hello-world.js": "lime-web-component-interfaces/static/js/doc-tutorials-hello-world.fe077a1b.js",
   "vendors.js": "lime-web-component-interfaces/static/js/vendors.894fb7fe.js",
-  "runtime~app.js": "lime-web-component-interfaces/static/js/runtime~app.15aafadba38e18aadbb9.js",
+  "runtime~app.js": "lime-web-component-interfaces/static/js/runtime~app.a9fc11e7ec062f54776f.js",
   "index.html": "lime-web-component-interfaces/index.html"
 }
