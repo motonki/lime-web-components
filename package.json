@@ -18,8 +18,8 @@
         "docz:serve": "serve .docz/dist --single"
     },
     "devDependencies": {
-        "@commitlint/cli": "^7.1.2",
-        "@commitlint/config-conventional": "^7.1.2",
+        "@commitlint/cli": "^7.3.2",
+        "@commitlint/config-conventional": "^7.3.1",
         "@semantic-release/changelog": "^3.0.0",
         "@semantic-release/git": "^7.0.4",
         "commitizen": "^3.0.1",
