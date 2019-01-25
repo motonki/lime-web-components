@@ -27,7 +27,7 @@
         "docz": "^0.12.5",
         "semantic-release": "^15.13.3",
         "serve": "^10.1.1",
-        "typescript": "^3.0.3"
+        "typescript": "^3.2.4"
     },
     "release": {
         "branch": "master",
