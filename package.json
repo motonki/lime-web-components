@@ -15,38 +15,39 @@
         "build": "tsc && node build.js",
         "start": "docz dev",
         "docz:build": "docz build",
-        "docz:serve": "serve .docz/dist --single"
+        "docz:serve": "serve .docz/dist --single",
+        "docz:ublish": "node publish-docs.js"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.1.2",
         "@commitlint/config-conventional": "^7.1.2",
         "@semantic-release/changelog": "^3.0.0",
+        "@semantic-release/exec": "^3.3.2",
         "@semantic-release/git": "^7.0.4",
         "commitizen": "^3.0.1",
         "cz-conventional-changelog": "^2.1.0",
         "docz": "^0.12.5",
+        "replace-in-file": "^3.4.3",
         "semantic-release": "^15.9.16",
         "serve": "^10.0.2",
+        "shelljs": "^0.8.3",
         "typescript": "^3.0.3"
     },
     "release": {
         "branch": "master",
-        "verifyConditions": [
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
             "@semantic-release/npm",
             "@semantic-release/git",
-            "@semantic-release/github"
-        ],
-        "prepare": [
-            {
-                "path": "@semantic-release/changelog"
-            },
-            "@semantic-release/npm",
-            "@semantic-release/git"
-        ],
-        "publish": [
-            "@semantic-release/npm",
-            "@semantic-release/github"
+            "@semantic-release/github",
+            [
+                "@semantic-release/exec",
+                {
+                    "publishCmd": "npm run docz:publish -- --v=${nextRelease.version} --dryRun=${options.dryRun}"
+                }
+            ]
         ],
         "npmPublish": true
     },
