@@ -5,6 +5,8 @@ export default {
     title: 'Lime Web Components',
     description: 'Documentation for Lime Web Components',
     typescript: true,
+    base: '/lime-web-component-interfaces/',
+    hashRouter: true,
     themeConfig: {
         colors: {
             primary: '#00b3a7',
