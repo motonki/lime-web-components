@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es6",
-        "lib": ["es6", "dom"],
+        "target": "es2017",
+        "lib": ["es2017", "dom"],
         "experimentalDecorators": true,
         "declaration": true
     },
