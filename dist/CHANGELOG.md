@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.1.0...v2.2.0) (2019-01-31)
+
+
+### Features
+
+* **filters state decorator:** adds filters decorator to state ([7942bcb](https://github.com/Lundalogik/lime-web-component-interfaces/commit/7942bcb))
+
 # [2.1.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.0.0...v2.1.0) (2018-11-30)
 
 
