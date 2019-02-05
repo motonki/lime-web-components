@@ -1,3 +1,4 @@
+
 export interface Limetype {
     name: string,
     label: string,
@@ -7,12 +8,7 @@ export interface Limetype {
         plural: string
     },
     properties: Properties,
-    ui: {
-        icon?: string,
-        create?: boolean,
-        color?: string,
-        descriptive?: string[]
-    }
+    [key:string]: any
 }
 
 export interface Limetypes {
@@ -23,7 +19,7 @@ export interface Property {
     acl: Acl,
     defaultvalue: any,
     fieldorder: number,
-    has_sql: boolean,
+    has_sql?: boolean,
     label: string,
     localname: string,
     name: string,
@@ -59,6 +55,11 @@ export interface Acl {
 
 export function isRelation(property: Property) {
     const propTypes: PropertyType[] = ['belongsto', 'hasone', 'hasmany', 'hasandbelongstomany'];
+    return property && propTypes.includes(property.type);
+}
+
+export function isSingleRelation(property: Property) {
+    const propTypes: PropertyType[] = ['belongsto', 'hasone'];
     return property && propTypes.includes(property.type);
 }
 
