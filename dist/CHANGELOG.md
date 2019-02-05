@@ -1,3 +1,16 @@
+# [2.3.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.2.0...v2.3.0) (2019-02-05)
+
+
+### Bug Fixes
+
+* **limetype interfaces:** some fixes in the interfaces ([00693fe](https://github.com/Lundalogik/lime-web-component-interfaces/commit/00693fe))
+
+
+### Features
+
+* **limetype:** add interfaces for limetype and property ([5014f4d](https://github.com/Lundalogik/lime-web-component-interfaces/commit/5014f4d))
+* **query:** add interface for query ([2b8f91e](https://github.com/Lundalogik/lime-web-component-interfaces/commit/2b8f91e))
+
 # [2.2.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.1.0...v2.2.0) (2019-01-31)
 
 
