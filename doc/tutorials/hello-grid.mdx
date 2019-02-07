@@ -1,0 +1,215 @@
+---
+name: Hello, grid!
+route: /hello-grid
+menu: Tutorials
+---
+
+# Hello, grid!
+
+This guide will help you create a grid-component. The grid-component is used to control which widgets to show on the dashboard, and how they are displayed at different screen sizes.
+
+## Creating a plugin
+
+While you can create a grid-component in an existing plugin, you will most likely want to separate your widgets and your grid. So we'll start by creating a new plugin.
+
+Run `lime-project` to create a new plugin
+
+```sh
+lime-project new plugin
+```
+
+It can be named anything, but in this guide we'll name it `My Grid`.
+
+## Generating a web component
+
+Enter the plugin directory and generate a new web component, using the command line flag `--grid=True`:
+
+```sh
+cd my-grid
+lime-project generate web-component hello-grid --grid=True
+```
+
+When the first component is created, some project setup is needed which might take a while to complete.
+
+## Configuring the grid
+
+Once the setup is complete, we can change directory to the root directory of the web components, and start our favorite editor.
+
+```sh
+cd my_grid/web_components/lwc-components
+code .
+```
+
+Our hello-grid component is located in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.tsx`.
+
+The component should look like this:
+
+```tsx
+import { Component, Element, Prop } from '@stencil/core';
+import {
+    LimeWebComponent,
+    LimeWebComponentContext,
+    LimeWebComponentPlatform,
+} from 'lime-web-component-interfaces';
+
+@Component({
+    tag: 'lwc-my-grid-hello-grid',
+    shadow: false,
+    styleUrl: 'lwc-my-grid-hello-grid.scss',
+})
+export class HelloGrid implements LimeWebComponent {
+    /*
+     * The following properties are required by the `LimeWebComponent`
+     * interface.
+     */
+    @Prop()
+    public platform: LimeWebComponentPlatform;
+
+    @Prop()
+    public context: LimeWebComponentContext;
+
+    @Element()
+    public element: HTMLElement;
+
+    public render() {
+        return (
+            <div class="lwc-my-grid-hello-grid--grid-container">
+                {/*
+                 * Add your widgets here.
+                 * You can use components from other plugins. There's no need to
+                 * install those other plugins in this one in any way. Just install
+                 * all of the plugins, including this one, in the webclient, as you
+                 * would any other plugin.
+                 */}
+                <lwc-my-todo-widget
+                    platform={this.platform}
+                    context={this.context}
+                />
+                <lwc-my-salespipe-widget
+                    platform={this.platform}
+                    context={this.context}
+                />
+            </div>
+        );
+    }
+}
+
+```
+
+As you can see, there are two example-widgets listed in the grid. They are not real widgets, and won't actually render anything, but are there only to show how to use the grid. Replace them with the widgets you wish to actually use.
+
+Note that you need to pass the `LimeWebComponentPlatform` and `LimeWebComponentContext` to the widgets you use.
+
+Most of the configuration is actually done in CSS. The stylesheet is located in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.scss`.
+
+```scss
+@import "lime-elements/dist/mixins";
+
+.lwc-my-grid-hello-grid--grid-container {
+    // Give each widget a name using the `grid-area` property.
+    lwc-my-todo-widget { grid-area: todo; }
+    lwc-my-salespipe-widget { grid-area: sale; }
+
+    // Use these variables to design your grid for small, medium, and large screens.
+    $small:
+        "todo todo"
+        "todo todo"
+        "sale sale"
+        "sale sale";
+    $medium:
+        "todo todo sale sale"
+        "todo todo sale sale"
+        "todo todo sale sale";
+    $large:
+        "todo todo todo todo sale sale sale sale"
+        "todo todo todo todo sale sale sale sale"
+        "todo todo todo todo sale sale sale sale"
+        "todo todo todo todo sale sale sale sale";
+
+    @include grid-fullpage($large, $medium, $small);
+}
+```
+
+Configuring the grid involves two steps:
+
+1. Naming each widget
+2. Defining the grid layout
+
+Let's remove the two example widgets, and add the hello-world widget from the previous tutorial instead.
+
+Update the render-function in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.tsx` to look like this:
+
+```tsx
+public render() {
+    return (
+        <div class="lwc-my-grid-hello-grid--grid-container">
+            <lwc-my-plugin-hello-world
+                platform={this.platform}
+                context={this.context}
+            />
+        </div>
+    );
+}
+```
+
+Then update `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.scss` like this:
+
+```scss
+@import "lime-elements/dist/mixins";
+
+.lwc-my-grid-hello-grid--grid-container {
+    // Give each widget a name using the `grid-area` property.
+    lwc-my-plugin-hello-world { grid-area: hw; }
+
+    // Use these variables to design your grid for small, medium, and large screens.
+    $small:
+        "hw hw"
+        "hw hw"
+        "hw hw";
+    $medium:
+        "hw hw hw hw"
+        "hw hw hw hw"
+        "hw hw hw hw";
+    $large:
+        "hw hw hw hw . . . ."
+        "hw hw hw hw . . . ."
+        "hw hw hw hw . . . .";
+
+    @include grid-fullpage($large, $medium, $small);
+}
+```
+
+Note how we are using `.` to signify empty cells of the grid.
+
+
+## Configuring a slot
+
+To add this component to the dashboard, all we need to do is edit `lwc.config.json` and add our desired slot.
+
+```json
+[
+    {
+        "name": "lwc-my-plugin-hello-world",
+        "slot": "dashboard"
+    }
+]
+```
+
+
+## Installing the plugin
+
+We are now ready to install our plugin in the webclient. Change directory to the root directory of the plugin, and install both plugins with `limeplug`
+
+```sh
+cd my-grid
+limeplug install .
+cd ..
+cd my-plugin
+limeplug install .
+```
+
+Once the webserver has been restarted, we should see our hello-world component render itself on the dashboard.
+
+## Further reading
+
+The grid layout is further explained in the Grid section of the **lime-elements** [documentation](https://lundalogik.github.io/lime-elements/).
