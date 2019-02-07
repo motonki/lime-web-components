@@ -1,5 +1,5 @@
 {
-  "app.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/app.8fd5d8ca.js",
+  "app.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/app.893cd43b.js",
   "doc-index.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-index.fc470691.js",
   "doc-api-reference-action-service.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-api-reference-action-service.ab85d0ca.js",
   "doc-api-reference-http-service.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-api-reference-http-service.a457bf52.js",
@@ -20,9 +20,9 @@
   "doc-concepts-state.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-concepts-state.485ee8a9.js",
   "doc-installation-getting-started.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-installation-getting-started.158c2e82.js",
   "doc-tutorials-hello-crm.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-tutorials-hello-crm.042b770f.js",
-  "doc-tutorials-hello-grid.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-tutorials-hello-grid.f90361ec.js",
+  "doc-tutorials-hello-grid.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-tutorials-hello-grid.93e289af.js",
   "doc-tutorials-hello-world.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/doc-tutorials-hello-world.056fa5e0.js",
   "vendors.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/vendors.4e3214ab.js",
-  "runtime~app.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/runtime~app.13ff6499fddb3c462b37.js",
+  "runtime~app.js": "/lime-web-component-interfaces/versions/2.3.0/static/js/runtime~app.c34af40505a1f4aa08e4.js",
   "index.html": "/lime-web-component-interfaces/versions/2.3.0/index.html"
 }
