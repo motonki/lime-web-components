@@ -31,18 +31,14 @@ When the first component is created, some project setup is needed which might ta
 
 ## Rendering the component
 
-Once the setup is complete, we can change directory to the root directory of the web components, and start our favorite
-editor.
+Once the setup is complete, we can change directory to the root directory of the web components, and start our favorite editor.
 
 ```sh
 cd my_plugin/web_components/lwc-components
 code .
 ```
 
-Our hello-world component is located in `src/components/lwc-my-plugin-hello-world/lwc-my-plugin-hello-world.tsx`. The
-file contains a lot of auto generated code that is useful, but not required for our simple hello-world component. We
-can remove most of it, but we have to keep the properties that belong to the `LimeWebComponent` interface, along with
-the `render` method.
+Our hello-world component is located in `src/components/lwc-my-plugin-hello-world/lwc-my-plugin-hello-world.tsx`. The file contains a lot of auto generated code that is useful, but not required for our simple hello-world component. We can remove most of it, but we have to keep the properties that belong to the `LimeWebComponent` interface, along with the `render` method.
 
 The finished component should look something like this:
 
@@ -76,8 +72,7 @@ We can now start the development environment by executing the following from the
 npm start
 ```
 
-Once the server has started, we can visit `http://localhost:3000/lwc-my-plugin-hello-world` and see the component render
-itself.
+Once the server has started, we can visit `http://localhost:3000/lwc-my-plugin-hello-world` and see the component render itself.
 
 ## Configuring a slot
 
@@ -95,8 +90,7 @@ To add this component to the object card, all we need to do is edit `lwc.config.
 
 ## Installing the plugin
 
-We are now ready to install our plugin in the webclient. Change directory to the root directory of the plugin, and
-install the plugin with `limeplug`
+We are now ready to install our plugin in the webclient. Change directory to the root directory of the plugin, and install the plugin with `limeplug`
 
 ```sh
 cd my-plugin
