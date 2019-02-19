@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.3.0...v2.4.0) (2019-02-19)
+
+
+### Features
+
+* **query interface:** add optional type attribute on expression interface ([2fd6a78](https://github.com/Lundalogik/lime-web-component-interfaces/commit/2fd6a78))
+
 # [2.3.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.2.0...v2.3.0) (2019-02-05)
 
 

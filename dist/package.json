@@ -1,6 +1,6 @@
 {
 	"name": "lime-web-component-interfaces",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"description": "Lime web components",
 	"author": "Lime Technologies",
 	"homepage": "https://github.com/Lundalogik/lime-web-component-interfaces#readme",
@@ -42,7 +42,7 @@
 			[
 				"@semantic-release/exec",
 				{
-					"publishCmd": "npm run docz:publish -- --v=${nextRelease.version} --dryRun=${options.dryRun}"
+					"publishCmd": "cd .. && npm run docz:publish -- --v=${nextRelease.version} --dryRun=${options.dryRun}"
 				}
 			]
 		],
