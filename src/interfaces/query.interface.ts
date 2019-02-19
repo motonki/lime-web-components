@@ -14,6 +14,7 @@ export interface Expression {
     key?: string;
     op: Operator;
     exp: any;
+    type?: 'filter'
 }
 
 export enum Operator {
