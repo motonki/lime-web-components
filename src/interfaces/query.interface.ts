@@ -35,3 +35,12 @@ export enum Operator {
     LESS_OR_EQUAL = '<=',
     GREATER_OR_EQUAL = '>='
 }
+
+export interface Filter {
+    id: string,
+    limetype: string,
+    name: {
+        [language:string]: string
+    },
+    filter: Expression
+}
