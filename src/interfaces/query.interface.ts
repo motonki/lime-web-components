@@ -10,6 +10,11 @@ export interface Query {
     };
 }
 
+export interface QueryResponse {
+    objects: any[];
+    aggregates: any;
+}
+
 export interface Expression {
     key?: string;
     op: Operator;
