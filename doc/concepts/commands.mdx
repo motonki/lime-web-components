@@ -1,0 +1,53 @@
+---
+name: Commands
+route: /commands
+menu: Concepts
+---
+
+# Commands
+
+Commands are a great way to help capture user intent. They let us encapsulate all information needed to perform an
+action into an object, and later execute that action without knowing anything about the action beeing requested or the
+receiver of the request.
+
+To help with this, the platform exposes a service called `commandbus`.
+
+## Command bus
+
+The command bus uses the command design pattern and combines it with a service layer. Its job is to take a command
+object (which describes what the user wants to do) and match it to a handler (which executes it). This can help you
+structure your code in a neat way.
+
+We can for instance use it in a menu. The menu knows nothing about what actions to perform when the user selects an
+item in the menu. It only takes command objects as input, and sends the commands to the command bus for execution when
+an item is selected.
+
+### Example
+First we declare and register the command and its handler on the command bus
+
+```typescript
+@Command({ id: 'my-special-command' })
+class MySpecialCommand {
+    public id: number;
+    public limetype: Limetype;
+}
+
+class MySpecialHandler implements CommandHandler {
+    public handle(command: MySpecialCommand) {
+        // do your magic stuff here
+    }
+}
+
+const handler = new MySpecialHandler();
+platform.commandbus.register(MySpecialCommand, handler);
+```
+
+Then, if we want to invoke the command, we simply create an instance of it and send it to the commandbus
+
+```typescript
+const command = new MySpecialCommand();
+command.id = 1001;
+command.limetype = { ... };
+
+platform.commandbus.handle(command);
+```
