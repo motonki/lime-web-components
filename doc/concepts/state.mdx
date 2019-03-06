@@ -115,3 +115,43 @@ export class MyComponent implements LimeWebComponent {
 - Limetypes - List of limetypes
 - CurrentLimetype - The limetype of the current context
 - Session - Information regarding the session
+
+## Reloading data in the webclient
+
+While information is always kept up to date in web components thanks to the state decorators, this is not true for
+every part of the webclient. In the best of worlds, things like the card and related lists should update automatically
+when data is saved. While the aim is for this to be true in the future, we are not there yet. We also understand that
+there is a need to reload data without refreshing the entire page.
+
+While working on getting all the parts of the webclient state aware, we have provided a temporary solution that can be
+used to manually reload data in the card, activity feed and related lists. The method is deprecated and code should be
+made backwards compatible by making sure it exists before calling it. When the webclient has been updated to read all
+its data from the state, this method will not be needed any longer and will be removed.
+
+The example below illustrates how this can be used. Please note that if there are any unsaved changes on the card,
+these will be lost when invoking this method.
+
+```tsx
+export class MyComponent implements LimeWebComponent {
+
+    @Prop()
+    public context: LimeWebComponentContext;
+
+    @Prop()
+    public platform: LimeWebComponentPlatform;
+
+    private async saveData(data: any) {
+        const http: HttpService = this.platform.http;
+        const url = `my_addon/my_endpoint/?id=${this.context.id}`;
+        const objectService: LimeobjectsStateService = this.platform.state.limeobjects;
+
+        // Call endpoint that will save some data on the object
+        await http.put(url, data);
+
+        // Manually refresh the object in the webclient, if the method is available
+        if (objectService.reload) {
+            objectService.reload(this.context.limetype, this.context.id);
+        }
+    }
+}
+```
