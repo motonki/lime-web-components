@@ -23,7 +23,6 @@ export default {
                 'Context',
                 'Platform services',
                 'State',
-                'Actions',
                 'Lime Elements'
             ]
         },
@@ -39,8 +38,7 @@ export default {
             menu: [
                 'LimeWebComponent',
                 'LimeWebComponentPlatform',
-                'LimeWebComponentContext',
-                'LimeWebComponentAction'
+                'LimeWebComponentContext'
             ]
         }
     ]

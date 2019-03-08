@@ -1,0 +1,11 @@
+{
+    "mode": "modules",
+    "out": "doc/api",
+    "theme": "markdown",
+    "mdHideSources": true,
+    "mdEngine": "github",
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "excludeExternals": true
+}

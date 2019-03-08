@@ -13,10 +13,11 @@
     ],
     "scripts": {
         "build": "tsc && node build.js",
-        "start": "docz dev",
-        "docz:build": "docz build",
+        "start": "npm run generate-api-docs && docz dev",
+        "docz:build": "npm run generate-api-docs && docz build",
         "docz:serve": "serve .docz/dist --single",
-        "docz:publish": "node publish-docs.js"
+        "docz:publish": "node publish-docs.js",
+        "generate-api-docs": "npx typedoc && node transform-docs.js"
     },
     "devDependencies": {
         "@commitlint/cli": "^7.3.2",
@@ -31,6 +32,8 @@
         "semantic-release": "^15.13.3",
         "serve": "^10.1.1",
         "shelljs": "^0.8.3",
+        "typedoc": "^0.14.2",
+        "typedoc-plugin-markdown": "^1.1.27",
         "typescript": "^3.2.4"
     },
     "release": {
