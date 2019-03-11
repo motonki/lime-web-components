@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.6.0...v2.6.1) (2019-03-11)
+
+
+### Bug Fixes
+
+* **route service:** route to table takes an expression as argument ([598d51e](https://github.com/Lundalogik/lime-web-component-interfaces/commit/598d51e)), closes [Lundalogik/crm-feature#762](https://github.com/Lundalogik/crm-feature/issues/762)
+
 # [2.6.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.5.0...v2.6.0) (2019-03-08)
 
 
