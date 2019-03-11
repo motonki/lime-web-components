@@ -18,6 +18,7 @@ export interface LimeWebComponentPlatform {
         application: StateService;
         configs: StateService;
         filters: StateService;
+        device: StateService;
     };
 
     translate: TranslateService;
