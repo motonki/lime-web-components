@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.6.1...v2.7.0) (2019-03-13)
+
+
+### Features
+
+* **device:** add device state decorator ([10ac181](https://github.com/Lundalogik/lime-web-component-interfaces/commit/10ac181)), closes [Lundalogik/crm-feature#807](https://github.com/Lundalogik/crm-feature/issues/807)
+
 ## [2.6.1](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.6.0...v2.6.1) (2019-03-11)
 
 
