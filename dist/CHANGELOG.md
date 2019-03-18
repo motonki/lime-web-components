@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.7.0...v2.8.0) (2019-03-18)
+
+
+### Features
+
+* **loader:** new interface for plugin loader ([db870fe](https://github.com/Lundalogik/lime-web-component-interfaces/commit/db870fe)), closes [Lundalogik/crm-feature#759](https://github.com/Lundalogik/crm-feature/issues/759)
+
 # [2.7.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.6.1...v2.7.0) (2019-03-13)
 
 
