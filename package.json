@@ -56,7 +56,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Lundalogik/lime-web-component-interfaces.git"
+        "url": "https://github.com/Lundalogik/lime-web-component-interfaces.git"
     },
     "publishConfig": {
         "repository": "http://npm.lundalogik.com:4873"
