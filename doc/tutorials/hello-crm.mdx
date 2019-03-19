@@ -6,8 +6,7 @@ menu: Tutorials
 
 # Hello, CRM!
 
-While our hello-world component might be great, it does not do much to interact with the webclient. This tutorial is a
-continuation of the first tutorial, and aims to create a more advanced component than hello-world.
+While our hello-world component might be great, it does not do much to interact with the webclient. This tutorial is a continuation of the first tutorial, and aims to create a more advanced component than hello-world.
 
 ## A new component
 
@@ -17,8 +16,7 @@ Create a new component with `lime-project`
 lime-project generate web-component hello-crm
 ```
 
-Just as with our first component, we can remove most of the code in `` and add more as needed. To get started, our
-component should look like this.
+Just as with our first component, we can remove most of the code in `` and add more as needed. To get started, our component should look like this.
 
 ```tsx
 import { Component, Element, Prop } from '@stencil/core';
@@ -58,8 +56,7 @@ Let's also add it to the same slot as hello-world so we can view it in the webcl
 
 ## Conditional rendering
 
-At the moment, our component is more or less the same as the hello-world component. To make it a bit more interesting,
-lets add some conditional rendering and only render our component on the company card.
+At the moment, our component is more or less the same as the hello-world component. To make it a bit more interesting, lets add some conditional rendering and only render our component on the company card.
 
 To do this, lets modify our `render` method to check if the current context is `company`.
 
@@ -73,11 +70,9 @@ public render() {
 }
 ```
 
-Now, if we visit a company card we should se both "Hello, world!" and "Hello, CRM!" printed, but on all other cards,
-only "Hello, world!" is printed.
+Now, if we visit a company card we should se both "Hello, world!" and "Hello, CRM!" printed, but on all other cards, only "Hello, world!" is printed.
 
-Let's make the component do something a bit more interesting than just rendering a string. Let's add a label displaying
-the name of the company, and a button that changes the name once it's been pressed.
+Let's make the component do something a bit more interesting than just rendering a string. Let's add a label displaying the name of the company, and a button that changes the name once it's been pressed.
 
 ## Connecting to the state
 
@@ -95,8 +90,7 @@ export class HelloCrm implements LimeWebComponent {
 }
 ```
 
-This will make the `company` property contain the current company from the context. To render the name, we simply have
-to modify our `render` method like so:
+This will make the `company` property contain the current company from the context. To render the name, we simply have to modify our `render` method like so:
 
 ```tsx
 public render() {
@@ -107,14 +101,11 @@ public render() {
 }
 ```
 
-> **Note!** There is an issue at the moment where the state decorators does not function properly unless the
-> `componentWillLoad` and `componentDidUnload` lifecycle hooks are implemented in the component. The methods do not
-> have to do anything, they just have to exist.
+> **Note!** There is an issue at the moment where the state decorators does not function properly unless the `componentWillLoad` and `componentDidUnload` lifecycle hooks are implemented in the component. The methods do not have to do anything, they just have to exist.
 
 ## Using the Core API
 
-Let's also add a button to the `render` method that changes the name of the company once it has been pressed. To change
-the name, we are going to use the `http` service from the platform to call the Core API and change the name.
+Let's also add a button to the `render` method that changes the name of the company once it has been pressed. To change the name, we are going to use the `http` service from the platform to call the Core API and change the name.
 
 ```tsx
 public render() {

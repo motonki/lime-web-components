@@ -6,8 +6,7 @@ menu: Concepts
 
 # Slots
 
-The Lime CRM webclient defines a set of slots where Lime Web Components can be injected. To specify where a web
-component should live, edit the file `lwc.config.json` in the root directory for the web components.
+The Lime CRM webclient defines a set of slots where Lime Web Components can be injected. To specify where a web component should live, edit the file `lwc.config.json` in the root directory for the web components.
 
 The format should be:
 
@@ -20,12 +19,9 @@ The format should be:
 ]
 ```
 
-where `<component-name>` is the `tag` name of the web component specified in the `@Component` decorator, and
-`<slot-name>` is the name of the slot.
+where `<component-name>` is the `tag` name of the web component specified in the `@Component` decorator, and `<slot-name>` is the name of the slot.
 
-Only root components should be listed in `lwc.config.json`, i.e. components that are created and injected by the
-webclient. Other components, e.g. components that are nested or reused between many components, do not belong in any
-slot and should not be listed.
+Only root components should be listed in `lwc.config.json`, i.e. components that are created and injected by the webclient. Other components, e.g. components that are nested or reused between many components, do not belong in any slot and should not be listed.
 
 ## List of slots
 
