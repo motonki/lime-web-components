@@ -101,8 +101,6 @@ public render() {
 }
 ```
 
-> **Note!** There is an issue at the moment where the state decorators does not function properly unless the `componentWillLoad` and `componentDidUnload` lifecycle hooks are implemented in the component. The methods do not have to do anything, they just have to exist.
-
 ## Using the Core API
 
 Let's also add a button to the `render` method that changes the name of the company once it has been pressed. To change the name, we are going to use the `http` service from the platform to call the Core API and change the name.
