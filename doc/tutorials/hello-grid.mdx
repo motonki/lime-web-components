@@ -1,16 +1,16 @@
 ---
-name: Hello, grid!
+name: Hello, Grid!
 route: /hello-grid
 menu: Tutorials
 ---
 
-# Hello, grid!
+# Hello, Grid!
 
-This guide will help you create a grid-component. The grid-component is used to control which widgets to show on the dashboard, and how they are displayed at different screen sizes.
+This guide will show you how to use the `limel-grid` component to control which widgets to display on a given area, and how to handle different screen sizes.
 
-## Creating a plugin
+## Creating a Plugin
 
-While you can create a grid-component in an existing plugin, you will most likely want to separate your widgets and your grid. So we'll start by creating a new plugin.
+While you can use `limel-grid` in an existing plugin, you will most likely want to separate your widgets and your grid. So we'll start by creating a new plugin.
 
 Run `lime-project` to create a new plugin
 
@@ -20,204 +20,228 @@ lime-project new plugin
 
 It can be named anything, but in this guide we'll name it `My Grid`.
 
-## Generating a web component
-
-Enter the plugin directory and generate a new web component, using the command line flag `--grid=True`:
+Enter the plugin directory and generate a new web component:
 
 ```sh
 cd my-grid
-lime-project generate web-component hello-grid --grid=True
+lime-project generate web-component hello-grid
 ```
 
 When the first component is created, some project setup is needed which might take a while to complete.
 
-## Configuring the grid
+## Setting up Our Example
 
 Once the setup is complete, we can change directory to the root directory of the web components, and start our favorite editor.
 
 ```sh
-cd my_grid/web_components/lwc-components
+cd frontend
 code .
 ```
 
 Our hello-grid component is located in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.tsx`.
 
-The component should look like this:
+Remove the `limel-button` component from the scaffolded component, and replace it with a `limel-grid` component, and some mock content, like this:
 
 ```tsx
-import { Component, Element, Prop } from '@stencil/core';
-import {
-    LimeWebComponent,
-    LimeWebComponentContext,
-    LimeWebComponentPlatform,
-} from 'lime-web-component-interfaces';
-
-@Component({
-    tag: 'lwc-my-grid-hello-grid',
-    shadow: false,
-    styleUrl: 'lwc-my-grid-hello-grid.scss',
-})
-export class HelloGrid implements LimeWebComponent {
-    /*
-     * The following properties are required by the `LimeWebComponent`
-     * interface.
-     */
-    @Prop()
-    public platform: LimeWebComponentPlatform;
-
-    @Prop()
-    public context: LimeWebComponentContext;
-
-    @Element()
-    public element: HTMLElement;
-
     public render() {
         return (
-            <div class="lwc-my-grid-hello-grid--grid-container">
-                {/*
-                 * Add your widgets here.
-                 * You can use components from other plugins. There's no need to
-                 * install those other plugins in this one in any way. Just install
-                 * all of the plugins, including this one, in the webclient, as you
-                 * would any other plugin.
-                 */}
-                <lwc-my-todo-widget
-                    platform={this.platform}
-                    context={this.context}
-                />
-                <lwc-my-salespipe-widget
-                    platform={this.platform}
-                    context={this.context}
-                />
-            </div>
+            <limel-grid>
+                <my-deep-red-component />
+                <my-red-component />
+                <my-orange-component />
+                <my-yellow-component />
+                <my-green-component />
+                <my-turquoise-component />
+                <my-blue-component />
+                <my-dark-blue-component />
+                <my-magenta-component />
+                <my-light-grey-component />
+                <my-dark-grey-component />
+            </limel-grid>
         );
     }
-}
 
 ```
 
-As you can see, there are two example-widgets listed in the grid. They are not real widgets, and won't actually render anything, but are there only to show how to use the grid. Replace them with the widgets you wish to actually use.
+We'll use these mock components for this example, but you can replace them with actual components if you like.
 
-Note that you need to pass the `LimeWebComponentPlatform` and `LimeWebComponentContext` to the widgets you use.
-
-Most of the configuration is actually done in CSS. The stylesheet is located in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.scss`.
-
-```scss
-@import "lime-elements/dist/mixins";
-
-.lwc-my-grid-hello-grid--grid-container {
-    // Give each widget a name using the `grid-area` property.
-    lwc-my-todo-widget { grid-area: todo; }
-    lwc-my-salespipe-widget { grid-area: sale; }
-
-    // Use these variables to design your grid for small, medium, and large screens.
-    $small:
-        "todo todo"
-        "todo todo"
-        "sale sale"
-        "sale sale";
-    $medium:
-        "todo todo sale sale"
-        "todo todo sale sale"
-        "todo todo sale sale";
-    $large:
-        "todo todo todo todo sale sale sale sale"
-        "todo todo todo todo sale sale sale sale"
-        "todo todo todo todo sale sale sale sale"
-        "todo todo todo todo sale sale sale sale";
-
-    @include grid-fullpage($large, $medium, $small);
-}
-```
-
-Configuring the grid involves two steps:
-
-1. Naming each widget
-2. Defining the grid layout
-
-Let's remove the two example widgets, and add the hello-world widget from the previous tutorial instead.
-
-Update the render-function in `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.tsx` to look like this:
+Note that when using a real component, you need to pass the `platform` and `context` properties to it, like this:
 
 ```tsx
-public render() {
-    return (
-        <div class="lwc-my-grid-hello-grid--grid-container">
-            <lwc-my-plugin-hello-world
-                platform={this.platform}
-                context={this.context}
-            />
-        </div>
-    );
-}
+<my-deep-red-component
+    platform={this.platform}
+    context={this.context} />
 ```
 
-Then update `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.scss` like this:
+Now we need to add a few things to the stylesheet for this component. Open `src/components/lwc-my-grid-hello-grid/lwc-my-grid-hello-grid.scss`. The file should be empty. Since we're using mock components, we need to add a little bit of styling to be able to see them, and tell the difference between them. Add the following to the file, and add some blank lines above, so you have somewhere to put the real code we'll add in a moment. If you decided to use real components instead of the mocks, go ahead and skip this step.
 
 ```scss
-@import "lime-elements/dist/mixins";
+// Below is stuff that's only here for the boxes in the grid
+// to look nice in this example. You wouldn't use any of this
+// when placing real components into a grid.
 
-.lwc-my-grid-hello-grid--grid-container {
-    // Give each widget a name using the `grid-area` property.
-    lwc-my-plugin-hello-world { grid-area: hw; }
+my-deep-red-component { background-color: var(--lime-deep-red); }
+my-red-component { background-color: var(--lime-red); }
+my-orange-component { background-color: var(--lime-orange); }
+my-yellow-component { background-color: var(--lime-yellow); }
+my-green-component { background-color: var(--lime-green); }
+my-turquoise-component { background-color: var(--lime-turquoise); }
+my-blue-component { background-color: var(--lime-blue); }
+my-dark-blue-component { background-color: var(--lime-dark-blue); }
+my-magenta-component { background-color: var(--lime-magenta); }
+my-light-grey-component { background-color: var(--lime-light-grey); }
+my-dark-grey-component { background-color: var(--lime-dark-grey); }
+```
 
-    // Use these variables to design your grid for small, medium, and large screens.
-    $small:
-        "hw hw"
-        "hw hw"
-        "hw hw";
-    $medium:
-        "hw hw hw hw"
-        "hw hw hw hw"
-        "hw hw hw hw";
-    $large:
-        "hw hw hw hw . . . ."
-        "hw hw hw hw . . . ."
-        "hw hw hw hw . . . .";
+## Configuring the Grid
 
-    @include grid-fullpage($large, $medium, $small);
+Now, we get to actually configuring the grid. First, we need to give each component in the grid a "name", by which we can reference it later. You can name each component anything you want, like `salespipe`, or `infotile-active-support-tickets`, but keeping the names to a fixed number of characters helps when we configure the grid in a moment. One to three characters is probably a good number for most cases.
+
+Add this to the top of the scss-file:
+
+```scss
+my-deep-red-component { grid-area: drd; }
+my-red-component { grid-area: red; }
+my-orange-component { grid-area: ora; }
+my-yellow-component { grid-area: yel; }
+my-green-component { grid-area: grn; }
+my-turquoise-component { grid-area: trq; }
+my-blue-component { grid-area: blu; }
+my-dark-blue-component { grid-area: dbl; }
+my-magenta-component { grid-area: mag; }
+my-light-grey-component { grid-area: lgr; }
+my-dark-grey-component { grid-area: dgr; }
+```
+
+
+And now we can finally configure our grid. Add this just below the above segment:
+
+```scss
+limel-grid {
+    --lime-grid-columns: 4;
+
+    --lime-grid-area:
+        "drd drd blu dbl"
+        "trq trq blu dbl"
+        "red red red red"
+        "dgr mag mag lgr"
+        "ora ora yel yel"
+        "grn grn .   .  "
+        "grn grn .   .  ";
 }
 ```
 
 Note how we are using `.` to signify empty cells of the grid.
 
+### Different Configurations for Different Screen Sizes
 
-## Configuring a slot
+Using the `@Device` decorator, we can update the grid configuration to suit the circumstances.
 
-To add this component to the dashboard, all we need to do is edit `lwc.config.json` and add our desired slot.
+Add `State` to the imports from `@stencil/core`:
+
+```tsx
+import { Component, Element, Prop, State } from '@stencil/core';
+```
+
+Then import `Device` from `lime-web-component-interfaces/state`:
+
+```tsx
+import { Device } from 'lime-web-component-interfaces/state';
+```
+
+Then use these two decorators as follows:
+
+```tsx
+@Device()
+@State()
+private device;
+```
+
+Note that the `State` decorator ensures that the component is re-rendered whenever the value of `this.device` is changed.
+
+```tsx
+public render() {
+    return (
+        <limel-grid class={`${this.device && this.device.type}`}>
+            <my-deep-red-component />
+            <my-red-component />
+            <my-orange-component />
+            <my-yellow-component />
+            <my-green-component />
+            <my-turquoise-component />
+            <my-blue-component />
+            <my-dark-blue-component />
+            <my-magenta-component />
+            <my-light-grey-component />
+            <my-dark-grey-component />
+        </limel-grid>
+    );
+}
+```
+
+The reason we use `this.device && this.device.type` instead of just `this.device.type` is so that we don't get an error if `this.device` is `null` or `undefined`. At the time of writing, the `Device` decorator is not implemented in the dev-app, so there the value of `this.device` will always be `undefined`.
+
+Now, we can configure the grid for each state. Note that we set a "default" configuration, which we override when a certain class is set on the element. This is so that if the `Device` decorator is updated to supply a new state name we don't know about, we still have that default configuration to fall back on, instead of showing nothing.
+
+```scss
+limel-grid {
+    --lime-grid-columns: 2;
+
+    --lime-grid-area:
+        "drd drd"
+        "trq trq"
+        "red red"
+        "dgr lgr"
+        "ora ora"
+        "grn grn"
+        "grn grn"
+        "blu dbl"
+        "blu dbl"
+        "mag mag"
+        "yel yel";
+
+    &.tablet {
+        --lime-grid-columns: 4;
+
+        --lime-grid-area:
+            "drd drd blu dbl"
+            "trq trq blu dbl"
+            "red red red red"
+            "dgr mag mag lgr"
+            "ora ora yel yel"
+            "grn grn .   .  "
+            "grn grn .   .  ";
+    }
+
+    &.desktop {
+        --lime-grid-columns: 8;
+
+        --lime-grid-area:
+            "drd drd blu dbl red red red red"
+            "trq trq blu dbl dgr mag mag lgr"
+            "ora ora yel yel grn grn grn grn"
+            "ora ora yel yel grn grn grn grn";
+    }
+}
+
+```
+
+## Configuring a Slot
+
+To add our grid to the dashboard, all we need to do is edit `lwc.config.json` and set our desired slot:
 
 ```json
 [
     {
-        "name": "lwc-my-plugin-hello-world",
+        "name": "lwc-my-grid-hello-grid",
         "slot": "dashboard"
     }
 ]
 ```
 
+Then install the plugin containing this grid component, and all plugins used in the grid, restart the server, and your new grid should be there to greet you next time you log in.
 
-## Building the plugin
-
-To build the plugin, run the following:
-
-```sh
-npm run build
-```
-
-
-## Installing the plugin
-
-We are now ready to install our plugin in the webclient. Change directory to the root directory of the plugin, and install both plugins with `limeplug`
-
-```sh
-cd my-grid
-limeplug install .
-cd ..
-cd my-plugin
-limeplug install .
-```
-
-Once the webserver has been restarted, we should see our hello-world component render itself on the dashboard.
+*Note: Do* not *set a slot for the components used in the grid, or they will be loaded and displayed twice—once by the grid component, and once by the slot itself.*
 
 ## Further reading
 
