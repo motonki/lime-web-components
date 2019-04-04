@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.8.0...v2.9.0) (2019-04-04)
+
+
+### Features
+
+* **http service:** add options parameter to all methods ([306086a](https://github.com/Lundalogik/lime-web-component-interfaces/commit/306086a))
+
 # [2.8.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.7.0...v2.8.0) (2019-03-18)
 
 
