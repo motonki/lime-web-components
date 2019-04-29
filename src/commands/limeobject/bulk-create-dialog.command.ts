@@ -1,0 +1,22 @@
+import { Command, Expression, Limetype } from "../../interfaces/index";
+
+/**
+ * Open a dialog for bulk creating limeobjects
+ *
+ * @id `limeobject.bulk-create-dialog`
+ */
+@Command({
+    id: 'limeobject.bulk-create-dialog'
+})
+export class BulkCreateDialogCommand {
+    /**
+     * The limetype of the objects to create new objects from
+     */
+    public limetype: Limetype;
+
+    /**
+     * A query describing what limeobjects to create new limeobjects from. Each object from the result will result in a
+     * new related limeobject to be created
+     */
+    public filter: Expression;
+}
