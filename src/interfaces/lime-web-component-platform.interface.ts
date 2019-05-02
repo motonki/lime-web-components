@@ -2,7 +2,7 @@ import { TranslateService } from "./service/translate-service.interface";
 import { HttpService } from "./service/http-service.interface";
 import { RouteService } from "./service/route-service.interface";
 import { NotificationService } from "./service/notification-service.interface";
-import { StateService, QueryService, CommandBusService } from "./service/index";
+import { StateService, QueryService, CommandBusService, DialogService } from "./service/index";
 import { LimeobjectsStateService } from "./service/state/limeobjects-service.interface";
 
 // lib with functions that the platform can implement
@@ -31,4 +31,6 @@ export interface LimeWebComponentPlatform {
     query: QueryService;
 
     commandBus: CommandBusService;
+
+    dialog: DialogService;
 }
