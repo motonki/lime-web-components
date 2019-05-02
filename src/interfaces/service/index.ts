@@ -1,4 +1,3 @@
-export * from './action-service.interface';
 export * from './http-service.interface';
 export * from "./route-service.interface";
 export * from './state-service.interface';
