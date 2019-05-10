@@ -30,7 +30,9 @@ export default {
             name: 'Tutorials',
             menu: [
                 'Hello, world!',
-                'Hello, CRM!'
+                'Hello, CRM!',
+                'Hello, Grid!',
+                'Hello, Command!',
             ]
         },
         {

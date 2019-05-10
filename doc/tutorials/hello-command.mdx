@@ -1,0 +1,100 @@
+---
+name: Hello, Command!
+route: /hello-command
+menu: Tutorials
+---
+
+# Hello, Command!
+
+This guide will show how to generate a new command, connect it to a handler, and trigger the command from a menu in the
+webclient.
+
+## Generate a command
+
+Start by generating a new command with `lime-project` inside your plugin
+
+```
+lime-project generate command hello
+```
+
+This will generate a command class and its corresponding handler.
+
+```typescript
+// src/commands/hello/hello.command.ts
+import { Command } from "lime-web-component-interfaces";
+
+@Command({
+    id: "my-plugin.hello"
+})
+export class HelloCommand {}
+```
+
+```typescript
+// src/commands/hello/hello.handler.ts
+import { CommandHandler } from "lime-web-component-interfaces";
+
+export class HelloHandler implements CommandHandler {
+    public handle(command: HelloCommand) {
+
+    }
+}
+```
+
+## Implement the handler
+
+Our command is only going to show a notification when the command is handled, but a more common use case when it is
+triggered from a menu is probably to open a dialog.
+
+To be able to show a notification when executing the command, we need to inject the `notifications` service in the
+constructor of the handler, and then use the service in the `handle` method when the command is executed.
+
+
+```typescript
+import { CommandHandler, NotificationService } from "lime-web-component-interfaces";
+
+export class HelloHandler implements CommandHandler {
+    constructor(private notifications: NotificationService) {}
+
+    public handle(command: HelloCommand) {
+        this.notifications.notify('Running HelloCommand!');
+        console.log(command);
+    }
+}
+```
+
+## Register the command
+
+In order to run this command, we need to register it with the handler when the application starts. A good place to do
+this is in the `Loader` component that is generated together with the first web component. In the `componentWillLoad`
+lifecycle hook, we can add the code that registers our command and make it useable in the application.
+
+```typescript
+// src/components/lwc-my-plugin-loader/lwc-my-plugin-loader.tsx
+export class Loader implements LimePluginLoader {
+    public componentWillLoad() {
+        const helloHandler = new HelloHandler(this.platform.notifications);
+        this.platform.commandBus.register(HelloCommand, helloHandler);
+    }
+}
+```
+
+## Trigger the command
+
+To trigger the command by yourself, you can simply send it to the commandbus from a component, e.g.
+
+```typescript
+function onButtonClick() {
+    const command = new HelloCommand();
+    this.platform.commandbus.handle(command);
+}
+```
+
+However, in order to add it to an existing menu in the webclient, we need to configure the menu to list our command.
+
+```json
+{
+    actions: [{
+        id: 'my-plugin.hello'
+    }]
+}
+```
