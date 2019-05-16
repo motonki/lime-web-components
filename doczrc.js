@@ -33,6 +33,7 @@ export default {
                 'Hello, CRM!',
                 'Hello, Grid!',
                 'Hello, Command!',
+                'Hello, Event!',
             ]
         },
         {
