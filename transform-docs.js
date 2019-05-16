@@ -36,6 +36,9 @@ function transformFile(filepath) {
     // Fix title, remove "Interface: "
     data = data.replace('# Class:', '# ');
 
+    // Fix title, remove "Enumeration: "
+    data = data.replace('# Enumeration:', '# ');
+
     // Remove hierarchy section
     regex = /Hierarchy.+?##/gs;
     data = data.replace(regex, '');

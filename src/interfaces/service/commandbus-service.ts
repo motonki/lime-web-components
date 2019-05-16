@@ -61,6 +61,33 @@ export interface CommandMiddleware {
     execute(command: object, next: CallableCommandMiddleware): any;
 }
 
+/**
+ * Events dispatched by the commandbus event middleware
+ */
+export enum CommandEvent {
+    /**
+     * Dispatched when the command has been received by the commandbus.
+     * Calling `preventDefault()` on the event will stop the command from being handled
+     *
+     * @detail { command }
+     */
+    Received = 'command.received',
+
+    /**
+     * Dispatched when the command has been handled by the commandbus
+     *
+     * @detail { command, result }
+     */
+    Handled = 'command.handled',
+
+    /**
+     * Dispatched if an error occurs while handling the command
+     *
+     * @detail { command, error }
+     */
+    Failed = 'command.failed'
+}
+
 export interface CommandOptions {
     /**
      * Id of the command
