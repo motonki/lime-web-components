@@ -1,3 +1,11 @@
+# [4.1.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v4.0.0...v4.1.0) (2019-05-17)
+
+
+### Features
+
+* **platform:** add TaskService to plugininterface ([9a344ea](https://github.com/Lundalogik/lime-web-component-interfaces/commit/9a344ea))
+* **task-service:** add task service interface ([4e703db](https://github.com/Lundalogik/lime-web-component-interfaces/commit/4e703db))
+
 # [4.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v3.0.0...v4.0.0) (2019-05-17)
 
 
