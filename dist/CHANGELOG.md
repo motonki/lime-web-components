@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v3.0.0...v4.0.0) (2019-05-17)
+
+
+### Features
+
+* **commandbus:** add command events ([4082e2c](https://github.com/Lundalogik/lime-web-component-interfaces/commit/4082e2c))
+* **event dispatcher:** new service for handling application events ([565055c](https://github.com/Lundalogik/lime-web-component-interfaces/commit/565055c))
+
+
+### BREAKING CHANGES
+
+* **event dispatcher:** Added eventDispatcher service on platform interface
+
 # [3.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v2.9.0...v3.0.0) (2019-05-14)
 
 
