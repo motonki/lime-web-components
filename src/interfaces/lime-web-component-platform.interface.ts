@@ -7,7 +7,8 @@ import {
     QueryService,
     CommandBusService,
     DialogService,
-    EventDispatcherService
+    EventDispatcherService,
+    TaskService
 } from "./service/index";
 import { LimeobjectsStateService } from "./service/state/limeobjects-service.interface";
 
@@ -41,4 +42,6 @@ export interface LimeWebComponentPlatform {
     dialog: DialogService;
 
     eventDispatcher: EventDispatcherService;
+
+    taskService: TaskService;
 }
