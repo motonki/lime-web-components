@@ -25,6 +25,7 @@ export interface LimeWebComponentPlatform {
         configs: StateService;
         filters: StateService;
         device: StateService;
+        tasks: TaskService;
     };
 
     translate: TranslateService;
@@ -42,6 +43,4 @@ export interface LimeWebComponentPlatform {
     dialog: DialogService;
 
     eventDispatcher: EventDispatcherService;
-
-    taskService: TaskService;
 }
