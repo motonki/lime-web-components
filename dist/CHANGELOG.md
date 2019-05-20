@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v4.1.0...v5.0.0) (2019-05-20)
+
+
+### Features
+
+* add TaskService to LimeWebComponentPlatform ([8640efc](https://github.com/Lundalogik/lime-web-component-interfaces/commit/8640efc))
+
+
+### BREAKING CHANGES
+
+* The LimeWebComponentPlatform interface has changed.
+
 # [4.1.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v4.0.0...v4.1.0) (2019-05-17)
 
 
