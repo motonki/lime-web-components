@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v5.0.0...v5.1.0) (2019-05-21)
+
+
+### Features
+
+* **route-service:** send in origin to track from where a user navigates to the table-view ([8ddfd1d](https://github.com/Lundalogik/lime-web-component-interfaces/commit/8ddfd1d))
+
 # [5.0.0](https://github.com/Lundalogik/lime-web-component-interfaces/compare/v4.1.0...v5.0.0) (2019-05-20)
 
 
