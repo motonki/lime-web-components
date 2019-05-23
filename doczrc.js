@@ -5,7 +5,7 @@ export default {
     title: 'Lime Web Components',
     description: 'Documentation for Lime Web Components',
     typescript: true,
-    base: '/lime-web-component-interfaces/',
+    base: '/lime-web-components/',
     hashRouter: true,
     themeConfig: {
         colors: {

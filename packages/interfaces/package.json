@@ -1,0 +1,28 @@
+{
+    "name": "@lime-web-components/interfaces",
+    "version": "0.1.0",
+    "author": "Lime Technologies",
+    "homepage": "https://github.com/Lundalogik/lime-web-components",
+    "license": "ISC",
+    "main": "dist/es5/index.js",
+    "types": "dist/index.d.ts",
+    "directories": {
+        "lib": "dist"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc && tsc -p tsconfig.es5.json"
+    },
+    "publishConfig": {
+        "registry": "http://npm.lundalogik.com:4873"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Lundalogik/lime-web-components.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Lundalogik/lime-web-components/issues"
+    }
+}

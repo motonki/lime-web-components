@@ -1,4 +1,4 @@
-import { StateOptions } from '../interfaces/service/state-service.interface';
+import { StateOptions } from '@lime-web-components/interfaces';
 
 export interface StateDecoratorConfig {
     /**

@@ -1,4 +1,4 @@
-import { Command, Limetype } from "../../interfaces/index";
+import { Command, Limetype } from "@lime-web-components/interfaces";
 
 /**
  * Open a dialog for creating a new limeobject

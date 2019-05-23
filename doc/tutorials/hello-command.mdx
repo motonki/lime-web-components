@@ -21,7 +21,7 @@ This will generate a command class and its corresponding handler.
 
 ```typescript
 // src/commands/hello/hello.command.ts
-import { Command } from "lime-web-component-interfaces";
+import { Command } from "@lime-web-components/interfaces";
 
 @Command({
     id: "my-plugin.hello"
@@ -31,7 +31,7 @@ export class HelloCommand {}
 
 ```typescript
 // src/commands/hello/hello.handler.ts
-import { CommandHandler } from "lime-web-component-interfaces";
+import { CommandHandler } from "@lime-web-components/interfaces";
 
 export class HelloHandler implements CommandHandler {
     public handle(command: HelloCommand) {
@@ -50,7 +50,7 @@ constructor of the handler, and then use the service in the `handle` method when
 
 
 ```typescript
-import { CommandHandler, NotificationService } from "lime-web-component-interfaces";
+import { CommandHandler, NotificationService } from "@lime-web-components/interfaces";
 
 export class HelloHandler implements CommandHandler {
     constructor(private notifications: NotificationService) {}

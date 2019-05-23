@@ -2,6 +2,6 @@ version: '3.2'
 services:
     app:
         build: .
-        image: lime-web-component-interfaces:latest
+        image: lime-web-components:latest
         volumes:
             - .:/lime

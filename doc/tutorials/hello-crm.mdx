@@ -20,7 +20,7 @@ Just as with our first component, we can remove most of the code in `` and add m
 
 ```tsx
 import { Component, Element, Prop } from '@stencil/core';
-import { LimeWebComponent, LimeWebComponentContext, LimeWebComponentPlatform } from 'lime-web-component-interfaces';
+import { LimeWebComponent, LimeWebComponentContext, LimeWebComponentPlatform } from '@lime-web-components/interfaces';
 
 @Component({
     tag: 'lwc-my-plugin-hello-crm',
@@ -79,7 +79,7 @@ Let's make the component do something a bit more interesting than just rendering
 To get the name of the company we need to define a property on our component and connect it to the state.
 
 ```tsx
-import { CurrentLimeobject } from 'lime-web-component-interfaces/state';
+import { CurrentLimeobject } from '@lime-web-components/decorators';
 
 export class HelloCrm implements LimeWebComponent {
     @CurrentLimeobject()

@@ -1,4 +1,4 @@
-import { Command, Expression, Limetype } from "../../interfaces/index";
+import { Command, Expression, Limetype } from "@lime-web-components/interfaces";
 
 /**
  * Open a dialog for bulk creating limeobjects

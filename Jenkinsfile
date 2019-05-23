@@ -62,9 +62,12 @@ pipeline {
             }
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'master' || (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-')) {
-                        echo 'On master or release-branch. Running release step.'
+                    if (env.BRANCH_NAME == 'master') {
+                        echo 'On master. Running release step.'
                         sh 'make release'
+                    } else if (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') {
+                        echo 'On release-branch. Running release step.'
+                        sh "make release BRANCH=${env.BRANCH_NAME}"
                     } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
                         echo 'On PR branch. Running release step in dry-run mode.'
                         sh "make release_dry_run BRANCH=${env.BRANCH_NAME}"

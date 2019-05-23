@@ -128,8 +128,8 @@ function build() {
             files: [
                 'doczrc.js',
             ],
-            from: /\/lime-web-component-interfaces\//g,
-            to: `/lime-web-component-interfaces/versions/${version}/`,
+            from: /\/lime-web-components\//g,
+            to: `/lime-web-components/versions/${version}/`,
         };
         const changes = replace.sync(options);
         shell.echo('Modified files:', changes.join(', '));
@@ -225,7 +225,7 @@ function push() {
         shell.echo('Dry-run, so skipping push.');
     } else if (
         shell.exec(
-            'git push https://$GH_TOKEN@github.com/Lundalogik/lime-web-component-interfaces.git HEAD:gh-pages'
+            'git push https://$GH_TOKEN@github.com/Lundalogik/lime-web-components.git HEAD:gh-pages'
         ).code !== 0
     ) {
         shell.echo('git push failed!');
