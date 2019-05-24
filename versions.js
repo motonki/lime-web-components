@@ -1,1 +1,1 @@
-window.versions = ["0.0.0-dev","0.0.0-dev1","0.0.0-dev2","0.0.0-dev4","0.0.0-dev5","0.0.0-dev6","0.0.1"];
+window.versions = ["0.0.1"];
