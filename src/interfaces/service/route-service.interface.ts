@@ -23,7 +23,6 @@ export interface RouteService {
      *
      * @param {string} limetype the limetype of the table to route to
      * @param {Expression} filter filter expression to apply to the table
-     * @param {string} origin of the navigate call e.g. the plugin name, used for tracking user data
      */
-    table(limetype: string, filter?: Expression, origin?: string);
+    table(limetype: string, filter?: Expression);
 }
