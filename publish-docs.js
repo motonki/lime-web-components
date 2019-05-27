@@ -171,7 +171,19 @@ function copyBuildOutput() {
         shell.exit(1);
     }
 
+    updateLandingPage();
     updateVersionList();
+}
+
+function updateLandingPage() {
+    if (
+        shell.cp('-f', 'docs-version-selection-page.html', `docsDist/index.html`).code !==
+        0
+    ) {
+        shell.echo('copying output failed!');
+        teardown();
+        shell.exit(1);
+    }
 }
 
 function remove(pattern) {
