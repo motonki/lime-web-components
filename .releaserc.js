@@ -20,7 +20,7 @@ module.exports = {
         "@semantic-release/git",
     ],
     publish: [
-        "@semantic-release/npm",
+        // "@semantic-release/npm",
         "@semantic-release/github",
         [
             "@semantic-release/exec",
