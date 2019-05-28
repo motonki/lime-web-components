@@ -32,7 +32,7 @@
                 return b[2].substring(0, 1) > a[2].substring(0, 1) ? 1 : -1;
             }
         });
-        createLink(`versions/latest/`, 'Latest');
+        createLink(`versions/latest/#/`, 'Latest');
         window.versions.forEach(function(version, index) {
             createLink(`versions/${version}/`, version);
         });
