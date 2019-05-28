@@ -1,4 +1,4 @@
-import { StateOptions } from '@lime-web-components/interfaces';
+import { StateOptions } from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 export type DeviceType = 'desktop' | 'tablet' | 'phone';
