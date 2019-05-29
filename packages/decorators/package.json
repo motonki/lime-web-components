@@ -1,6 +1,6 @@
 {
     "name": "@limetech/lime-web-components-decorators",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "Lime Technologies",
     "homepage": "https://github.com/Lundalogik/lime-web-components",
     "license": "ISC",
@@ -26,6 +26,6 @@
         "url": "https://github.com/Lundalogik/lime-web-components/issues"
     },
     "dependencies": {
-        "@limetech/lime-web-components-interfaces": "^0.1.0"
+        "@limetech/lime-web-components-interfaces": "^1.0.0"
     }
 }
