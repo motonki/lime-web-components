@@ -211,7 +211,10 @@ function createLatestSymlink(folder) {
     shell.cd('docsDist/versions');
 
     if (shell.ln('-sf', `${folder}`, 'latest').code !== 0) {
-        if (shell.rm('latest').code !== 0 || shell.ln('-sf', `${folder}`, 'latest').code !== 0) {
+        if (
+            shell.rm('latest').code !== 0 ||
+            shell.ln('-sf', `${folder}`, 'latest').code !== 0
+        ) {
             shell.echo('Creating latest-symlink failed!');
             teardown();
             shell.exit(1);
