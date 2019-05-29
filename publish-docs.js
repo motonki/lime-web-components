@@ -131,9 +131,8 @@ function build() {
             from: /\/lime-web-components\//g,
             to: `/lime-web-components/versions/${version}/`,
         };
-        const changes = replace.sync(options);
-        shell.echo('Modified files:', changes.join(', '));
-        shell.exec('git diff');
+        replace.sync(options);
+        shell.exec('git diff --name-status');
     } catch (error) {
         shell.echo('Error occurred:', error);
         teardown();
