@@ -12,9 +12,9 @@
         "generate-api-docs": "npx typedoc && node transform-docs.js"
     },
     "devDependencies": {
-        "@commitlint/cli": "^7.5.2",
-        "@commitlint/config-conventional": "^7.5.0",
-        "commitizen": "^3.0.7",
+        "@commitlint/cli": "^7.6.1",
+        "@commitlint/config-conventional": "^7.6.0",
+        "commitizen": "^3.1.1",
         "cz-conventional-changelog": "^2.1.0",
         "docz": "^0.12.5",
         "lerna": "^3.14.1",
