@@ -3,9 +3,6 @@ FROM node:lts-stretch
 # Create app directory
 WORKDIR /lime
 
-# .npmrc sets the correct registry for `npm install` to use
-COPY .npmrc ./
-
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json
 # are copied where available (npm@5+)
