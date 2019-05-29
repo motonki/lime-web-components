@@ -7,7 +7,6 @@
         "build": "lerna bootstrap && lerna run build",
         "start": "npm run generate-api-docs && docz dev",
         "docz:build": "npm run generate-api-docs && docz build",
-        "docz:serve": "serve .docz/dist --single",
         "docz:publish": "node publish-docs.js",
         "generate-api-docs": "npx typedoc && node transform-docs.js"
     },
@@ -19,7 +18,6 @@
         "docz": "^0.12.5",
         "lerna": "^3.14.1",
         "replace-in-file": "^4.1.0",
-        "serve": "^10.1.2",
         "shelljs": "^0.8.3",
         "typedoc": "^0.14.2",
         "typedoc-plugin-markdown": "^1.1.27",
