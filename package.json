@@ -20,7 +20,7 @@
         "replace-in-file": "^4.1.0",
         "shelljs": "^0.8.3",
         "typedoc": "^0.14.2",
-        "typedoc-plugin-markdown": "^1.1.27",
+        "typedoc-plugin-markdown": "^1.2.1",
         "typescript": "^3.2.4"
     },
     "directories": {
