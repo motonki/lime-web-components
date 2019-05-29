@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Lundalogik/lime-web-components/compare/v1.0.0...v1.0.1) (2019-05-29)
+
+
+### Bug Fixes
+
+* **decorators:** add missing exports ([cf60471](https://github.com/Lundalogik/lime-web-components/commit/cf60471))
+
+
+
+
+
 # [1.0.0](https://github.com/Lundalogik/lime-web-components/compare/v0.1.0...v1.0.0) (2019-05-29)
 
 
