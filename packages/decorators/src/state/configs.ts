@@ -5,7 +5,7 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
  * ConfigsOptions
  */
 export interface ConfigsOptions extends StateOptions {
-    name?: string
+    name?: string;
 }
 
 /**
@@ -17,7 +17,7 @@ export interface ConfigsOptions extends StateOptions {
  */
 export function Configs(options: ConfigsOptions) {
     const config: StateDecoratorConfig = {
-        name: 'configs'
+        name: 'configs',
     };
 
     return createStateDecorator(options, config);

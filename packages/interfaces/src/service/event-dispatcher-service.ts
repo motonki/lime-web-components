@@ -2,7 +2,6 @@
  * Service for handling application level events
  */
 export interface EventDispatcherService {
-
     /**
      * Dispatch a new event
      *
@@ -17,7 +16,10 @@ export interface EventDispatcherService {
      * @param {string} eventName name of the event to listen to
      * @param {Function} listener listener to invoke when the event is dispatched
      */
-    addListener<T>(eventName: string, listener: (event: CustomEvent<T>) => void): void;
+    addListener<T>(
+        eventName: string,
+        listener: (event: CustomEvent<T>) => void
+    ): void;
 
     /**
      * Stop listening for a specific event
@@ -25,5 +27,8 @@ export interface EventDispatcherService {
      * @param {string} eventName name of the event to stop listening to
      * @param {Function} listener listener to remove from the dispatcher
      */
-    removeListener<T>(eventName: string, listener: (event: CustomEvent<T>) => void): void;
+    removeListener<T>(
+        eventName: string,
+        listener: (event: CustomEvent<T>) => void
+    ): void;
 }

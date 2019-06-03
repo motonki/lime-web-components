@@ -2,7 +2,6 @@
  * Service for displaying different notification messages
  */
 export interface NotificationService {
-
     /**
      * Display a blocking alert dialog
      *
@@ -12,7 +11,11 @@ export interface NotificationService {
      *
      * @returns {Promise<void>} a promise that will be resolved when the dialog is closed
      */
-    alert(title: string, message: string, options?: AlertOptions): Promise<void>;
+    alert(
+        title: string,
+        message: string,
+        options?: AlertOptions
+    ): Promise<void>;
 
     /**
      * Display a blocking confirm dialog
@@ -25,7 +28,11 @@ export interface NotificationService {
      * If the accepting button was pressed, the promise will resolve to true.
      * Otherwise, the promise will resolve to false.
      */
-    confirm(title: string, message: string, options?: ConfirmOptions): Promise<boolean>;
+    confirm(
+        title: string,
+        message: string,
+        options?: ConfirmOptions
+    ): Promise<boolean>;
 
     /**
      * Display a non-blocking notification

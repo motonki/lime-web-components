@@ -2,7 +2,6 @@
  * Service for translating strings into different languages
  */
 export interface TranslateService {
-
     /**
      * Get a translated string by ID
      *

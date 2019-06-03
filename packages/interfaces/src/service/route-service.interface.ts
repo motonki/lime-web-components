@@ -1,4 +1,4 @@
-import { Expression } from "../query.interface";
+import { Expression } from '../query.interface';
 
 /**
  * Service for routing

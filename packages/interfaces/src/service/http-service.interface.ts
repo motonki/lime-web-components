@@ -58,12 +58,12 @@ export interface HttpOptions {
     /**
      * Query parameters to include in the request
      */
-    params?: HttpParams,
+    params?: HttpParams;
 
     /**
      * Additional HTTP-headers to send in the request
      */
-    headers?: HttpHeaders,
+    headers?: HttpHeaders;
 
     /**
      * Type of the response that is returned. Defaults to `json`

@@ -15,8 +15,8 @@ export interface LimeobjectsOptions extends StateOptions {
  */
 export function Limeobjects(options: LimeobjectsOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limeobjects'
-    }
+        name: 'limeobjects',
+    };
 
     return createStateDecorator(options, config);
 }
@@ -30,15 +30,15 @@ export function Limeobjects(options: LimeobjectsOptions = {}) {
  */
 export function CurrentLimeobject(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limeobjects'
-    }
-    options.map = [currentLimeobject, ...options.map || []];
+        name: 'limeobjects',
+    };
+    options.map = [currentLimeobject, ...(options.map || [])];
 
     return createStateDecorator(options, config);
 }
 
 function currentLimeobject(limeobjects: object) {
-    const { limetype, id } = this.context;
+    const { limetype, id } = this.context; // tslint:disable-line:no-invalid-this
 
     if (!limeobjects[limetype]) {
         return undefined;

@@ -2,7 +2,6 @@
  *
  */
 export interface DialogService {
-
     /**
      * Create a new dialog
      *
@@ -12,7 +11,11 @@ export interface DialogService {
      *
      * @returns id representing the dialog
      */
-    create(name: string, properties?: DialogProperties, listeners?: DialogListeners): number;
+    create(
+        name: string,
+        properties?: DialogProperties,
+        listeners?: DialogListeners
+    ): number;
 
     /**
      * Destroy a dialog

@@ -15,6 +15,11 @@ pipeline {
                 sh 'make build'
             }
         }
+        stage('Lint code') {
+            steps {
+                sh 'make lint'
+            }
+        }
         stage('Lint commits') {
             steps {
                 script {

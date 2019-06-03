@@ -1,4 +1,4 @@
-import { LimeWebComponent } from "./lime-web-component.interface";
+import { LimeWebComponent } from './lime-web-component.interface';
 
 /**
  * Interface for the loader component that is loaded when the app starts

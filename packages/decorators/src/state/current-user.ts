@@ -10,9 +10,9 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
  */
 export function CurrentUser(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'application'
-    }
-    options.map = [getCurrentUser, ...options.map || []];
+        name: 'application',
+    };
+    options.map = [getCurrentUser, ...(options.map || [])];
 
     return createStateDecorator(options, config);
 }

@@ -1,7 +1,6 @@
-import { StateService } from "../state-service.interface";
+import { StateService } from '../state-service.interface';
 
 export interface LimeobjectsStateService extends StateService {
-
     /**
      * Load the specified limeobject into the state
      *

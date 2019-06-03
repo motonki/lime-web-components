@@ -23,8 +23,8 @@ export default {
                 'Context',
                 'Platform services',
                 'State',
-                'Lime Elements'
-            ]
+                'Lime Elements',
+            ],
         },
         {
             name: 'Tutorials',
@@ -34,15 +34,15 @@ export default {
                 'Hello, Grid!',
                 'Hello, Command!',
                 'Hello, Event!',
-            ]
+            ],
         },
         {
             name: 'API reference',
             menu: [
                 'LimeWebComponent',
                 'LimeWebComponentPlatform',
-                'LimeWebComponentContext'
-            ]
-        }
-    ]
+                'LimeWebComponentContext',
+            ],
+        },
+    ],
 };

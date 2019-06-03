@@ -1,10 +1,9 @@
-import { Query, QueryResponse } from "../query.interface";
+import { Query, QueryResponse } from '../query.interface';
 
 /**
  * Service for executing queries using the query objects API
  */
 export interface QueryService {
-
     /**
      * Execute a query
      *

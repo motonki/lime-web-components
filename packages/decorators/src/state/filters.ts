@@ -5,7 +5,7 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
  * FiltersOptions
  */
 export interface FiltersOptions extends StateOptions {
-    id?: string,
+    id?: string;
     limetype?: string;
 }
 
@@ -18,7 +18,7 @@ export interface FiltersOptions extends StateOptions {
  */
 export function Filters(options: FiltersOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'filters'
+        name: 'filters',
     };
 
     return createStateDecorator(options, config);

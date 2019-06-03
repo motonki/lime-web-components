@@ -14,7 +14,7 @@ export interface LimetypesOptions extends StateOptions {
  */
 export function Limetypes(options: LimetypesOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limetypes'
+        name: 'limetypes',
     };
 
     return createStateDecorator(options, config);
@@ -29,15 +29,15 @@ export function Limetypes(options: LimetypesOptions = {}) {
  */
 export function CurrentLimetype(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limetypes'
+        name: 'limetypes',
     };
-    options.map = [currentLimetype, ...options.map || []];
+    options.map = [currentLimetype, ...(options.map || [])];
 
     return createStateDecorator(options, config);
 }
 
 function currentLimetype(limetypes: any) {
-    const { limetype } = this.context;
+    const { limetype } = this.context; // tslint:disable-line:no-invalid-this
 
     return limetypes[limetype];
 }

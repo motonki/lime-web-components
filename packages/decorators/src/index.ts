@@ -1,3 +1,4 @@
+/* tslint:disable:no-invalid-this */
 import { StateOptions } from '@limetech/lime-web-components-interfaces';
 
 export * from './state/application-name';
@@ -27,17 +28,17 @@ interface Component {
 }
 
 interface Property {
-    name: string,
-    options: StateOptions,
+    name: string;
+    options: StateOptions;
     service: {
-        name: string,
-        method: string
-    }
+        name: string;
+        method: string;
+    };
 }
 
 interface ComponentMapping {
-    component: Component,
-    properties: Property[],
+    component: Component;
+    properties: Property[];
 }
 
 /**
@@ -48,9 +49,17 @@ interface ComponentMapping {
  *
  * @returns {Function} state decorator
  */
-export function createStateDecorator(options: StateOptions, config: StateDecoratorConfig) {
+export function createStateDecorator(
+    options: StateOptions,
+    config: StateDecoratorConfig
+) {
     return (component: any, property: string) => {
-        const componentMapping = getComponentMapping(component, property, options, config);
+        const componentMapping = getComponentMapping(
+            component,
+            property,
+            options,
+            config
+        );
 
         if (componentMapping.properties.length === 1) {
             extendLifecycleMethods(component, componentMapping.properties);
@@ -72,35 +81,37 @@ const componentMappings: ComponentMapping[] = [];
  * @returns {ComponentMapping} mappings for the component
  */
 function getComponentMapping(
-        component: Component,
-        property: string,
-        options: StateOptions,
-        config: StateDecoratorConfig
-    ): ComponentMapping {
-    let mapping: ComponentMapping = componentMappings.find(item => item.component === component);
+    component: Component,
+    property: string,
+    options: StateOptions,
+    config: StateDecoratorConfig
+): ComponentMapping {
+    let mapping: ComponentMapping = componentMappings.find(
+        item => item.component === component
+    );
     if (!mapping) {
         mapping = {
             properties: [],
-            component
+            component: component,
         };
         componentMappings.push(mapping);
     }
 
     mapping.properties.push({
-        options,
+        options: options,
         name: property,
         service: {
             name: config.name,
-            method: config.method || 'subscribe'
-        }
+            method: config.method || 'subscribe',
+        },
     });
 
     return mapping;
 }
 
 interface Subscription {
-    instance: any,
-    unsubscribes: (() => void)[]
+    instance: any;
+    unsubscribes: Array<() => void>;
 }
 
 /**
@@ -114,7 +125,7 @@ interface Subscription {
 function extendLifecycleMethods(component: Component, properties: Property[]) {
     const originalComponentWillLoad = component.componentWillLoad;
     const originalComponentDidUnload = component.componentDidUnload;
-    let subscriptions: Subscription[] = [];
+    const subscriptions: Subscription[] = [];
 
     component.componentWillLoad = function(...args) {
         properties.forEach(property => {
@@ -122,7 +133,7 @@ function extendLifecycleMethods(component: Component, properties: Property[]) {
         });
 
         if (originalComponentWillLoad) {
-            originalComponentWillLoad.apply(this, args)
+            originalComponentWillLoad.apply(this, args);
         }
     };
 
@@ -131,8 +142,8 @@ function extendLifecycleMethods(component: Component, properties: Property[]) {
             originalComponentDidUnload.apply(this, args);
         }
 
-        unsubscribe.apply(this, [subscriptions]);
-    }
+        unsubscribeAll.apply(this, [subscriptions]);
+    };
 }
 
 /**
@@ -149,7 +160,7 @@ function subscribe(subscriptions: Subscription[], property: Property) {
     if (!subscription) {
         subscription = {
             instance: this,
-            unsubscribes: []
+            unsubscribes: [],
         };
 
         subscriptions.push(subscription);
@@ -159,7 +170,7 @@ function subscribe(subscriptions: Subscription[], property: Property) {
         property.options,
         property.name,
         property.service.name,
-        property.service.method
+        property.service.method,
     ]);
 
     subscription.unsubscribes.push(unsubscribe);
@@ -172,8 +183,8 @@ function subscribe(subscriptions: Subscription[], property: Property) {
  *
  * @returns {void}
  */
-function unsubscribe(subscriptions: Subscription[] = []) {
-    let subscription = subscriptions.find(item => item.instance === this);
+function unsubscribeAll(subscriptions: Subscription[] = []) {
+    const subscription = subscriptions.find(item => item.instance === this);
     subscription.unsubscribes.forEach(unsubscribe => unsubscribe());
     for (let i = subscriptions.length - 1; i >= 0; i--) {
         const item = subscriptions[i];
@@ -197,7 +208,7 @@ function unsubscribe(subscriptions: Subscription[] = []) {
 function mapState(instance: any, property: string) {
     return (state: any) => {
         instance[property] = state;
-    }
+    };
 }
 
 /**
@@ -211,8 +222,13 @@ function mapState(instance: any, property: string) {
  *
  * @returns {Function} unsubscribe function
  */
-function createSubscription(options: StateOptions, property: string, name: string, method: string) {
-    const myOptions = {...options};
+function createSubscription(
+    options: StateOptions,
+    property: string,
+    name: string,
+    method: string
+) {
+    const myOptions = { ...options };
     bindFunctions(myOptions, this);
 
     const service = this.platform.state[name];

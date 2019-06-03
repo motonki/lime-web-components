@@ -19,7 +19,7 @@ export type DeviceType = 'desktop' | 'tablet' | 'phone';
  */
 export function Device(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'device'
+        name: 'device',
     };
 
     return createStateDecorator(options, config);

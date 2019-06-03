@@ -1,4 +1,8 @@
-import { Command, Expression, Limetype } from "@limetech/lime-web-components-interfaces";
+import {
+    Command,
+    Expression,
+    Limetype,
+} from '@limetech/lime-web-components-interfaces';
 
 /**
  * Open a dialog for bulk creating limeobjects
@@ -6,7 +10,7 @@ import { Command, Expression, Limetype } from "@limetech/lime-web-components-int
  * @id `limeobject.bulk-create-dialog`
  */
 @Command({
-    id: 'limeobject.bulk-create-dialog'
+    id: 'limeobject.bulk-create-dialog',
 })
 export class BulkCreateDialogCommand {
     /**

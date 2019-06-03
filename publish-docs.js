@@ -125,9 +125,7 @@ function checkOutBranch() {
 function build() {
     try {
         const options = {
-            files: [
-                'doczrc.js',
-            ],
+            files: ['doczrc.js'],
             from: /\/lime-web-components\//g,
             to: `/lime-web-components/versions/${version}/`,
         };
@@ -176,8 +174,11 @@ function copyBuildOutput() {
 
 function updateLandingPage() {
     if (
-        shell.cp('-f', 'docs-version-selection-page.html', `docsDist/index.html`).code !==
-        0
+        shell.cp(
+            '-f',
+            'docs-version-selection-page.html',
+            `docsDist/index.html`
+        ).code !== 0
     ) {
         shell.echo('copying output failed!');
         teardown();
@@ -269,9 +270,7 @@ function push() {
 
 function teardown(finished) {
     if (finished || cleanOnFail) {
-        shell.exec(
-            'git checkout doczrc.js'
-        );
+        shell.exec('git checkout doczrc.js');
         shell.echo('Removing worktree for docsDist.');
         shell.exec('git worktree remove docsDist --force');
         shell.echo('Deleting local branch gh-pages.');

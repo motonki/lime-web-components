@@ -87,7 +87,7 @@ export enum CommandEvent {
      *
      * @detail { command, error }
      */
-    Failed = 'command.failed'
+    Failed = 'command.failed',
 }
 
 export interface CommandOptions {
@@ -111,7 +111,7 @@ export function Command(options: CommandOptions) {
 }
 
 function setCommandId(commandClass: CommandClass, id: string) {
-    commandClass['commandId'] = id;
+    commandClass['commandId'] = id; // tslint:disable-line:no-string-literal
 }
 
 /**
@@ -126,6 +126,7 @@ export function getCommandId(value: object | CommandIdentifier): string {
         return value;
     }
 
+    // tslint:disable:no-string-literal
     if (value && value.constructor && value.constructor['commandId']) {
         return value.constructor['commandId'];
     }
@@ -133,6 +134,7 @@ export function getCommandId(value: object | CommandIdentifier): string {
     if (value && value['commandId']) {
         return value['commandId'];
     }
+    // tslint:enable:no-string-literal
 
     return null;
 }

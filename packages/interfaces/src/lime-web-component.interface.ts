@@ -1,17 +1,17 @@
-import { LimeWebComponentPlatform } from "./lime-web-component-platform.interface";
-import { LimeWebComponentContext } from "./lime-web-component-context.interface";
+import { LimeWebComponentContext } from './lime-web-component-context.interface';
+import { LimeWebComponentPlatform } from './lime-web-component-platform.interface';
 
 /**
  * Interface that Lime web components must implement
  */
 export interface LimeWebComponent {
-  /**
-   * Reference to the platform
-   */
-  platform: LimeWebComponentPlatform;
+    /**
+     * Reference to the platform
+     */
+    platform: LimeWebComponentPlatform;
 
-  /**
-   * The context this component belongs to
-   */
-  context: LimeWebComponentContext;
+    /**
+     * The context this component belongs to
+     */
+    context: LimeWebComponentContext;
 }

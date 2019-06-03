@@ -10,9 +10,9 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
  */
 export function ApplicationName(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'application'
-    }
-    options.map = [getApplicationName, ...options.map || []];
+        name: 'application',
+    };
+    options.map = [getApplicationName, ...(options.map || [])];
 
     return createStateDecorator(options, config);
 }

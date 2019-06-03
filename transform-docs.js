@@ -11,8 +11,7 @@ function traverseFileSystem(path) {
 
         if (stats.isFile()) {
             transformFile(filepath);
-        }
-        else if (stats.isDirectory()) {
+        } else if (stats.isDirectory()) {
             traverseFileSystem(filepath);
         }
     }

@@ -19,7 +19,7 @@ export interface Expression {
     key?: string;
     op: Operator;
     exp: any;
-    type?: 'filter'
+    type?: 'filter';
 }
 
 export enum Operator {
@@ -33,14 +33,14 @@ export enum Operator {
     BEGINS = '=?',
     LIKE = '?',
     LESS_OR_EQUAL = '<=',
-    GREATER_OR_EQUAL = '>='
+    GREATER_OR_EQUAL = '>=',
 }
 
 export interface Filter {
-    id: string,
-    limetype: string,
+    id: string;
+    limetype: string;
     name: {
-        [language:string]: string
-    },
-    filter: Expression
+        [language: string]: string;
+    };
+    filter: Expression;
 }

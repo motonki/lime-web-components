@@ -1,4 +1,4 @@
-import { Command, Limetype } from "@limetech/lime-web-components-interfaces";
+import { Command, Limetype } from '@limetech/lime-web-components-interfaces';
 
 /**
  * Open a dialog for creating a new limeobject
@@ -6,7 +6,7 @@ import { Command, Limetype } from "@limetech/lime-web-components-interfaces";
  * @id `limeobject.create-dialog`
  */
 @Command({
-    id: 'limeobject.create-dialog'
+    id: 'limeobject.create-dialog',
 })
 export class CreateLimeobjectDialogCommand {
     /**
