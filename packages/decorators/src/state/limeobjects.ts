@@ -8,6 +8,10 @@ export interface LimeobjectsOptions extends StateOptions {
 
 /**
  * Get a list of limeobjects
+ *
+ * @param {LimeobjectsOptions} [options] state decorator options
+ *
+ * @returns {Function} state decorator
  */
 export function Limeobjects(options: LimeobjectsOptions = {}) {
     const config: StateDecoratorConfig = {
@@ -19,6 +23,10 @@ export function Limeobjects(options: LimeobjectsOptions = {}) {
 
 /**
  * Get the limeobject for the current context
+ *
+ * @param {StateOptions} [options] state decorator options
+ *
+ * @returns {Function} state decorator
  */
 export function CurrentLimeobject(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {

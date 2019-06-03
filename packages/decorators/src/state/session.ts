@@ -3,6 +3,10 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 /**
  * Get the application session
+ *
+ * @param {StateOptions} [options] state decorator options
+ *
+ * @returns {Function} state decorator
  */
 export function Session(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {

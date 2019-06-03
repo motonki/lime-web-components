@@ -5,8 +5,10 @@ export interface StateService {
     /**
      * Subscribe to state changes
      *
-     * @param callback
-     * @param options
+     * @param {Function} callback function to call when subscription updates
+     * @param {StateOptions} [options] options for the state selector
+     *
+     * @returns {Function} unsubscribe callback
      */
     subscribe(callback: () => void, options?: StateOptions): () => void;
 }

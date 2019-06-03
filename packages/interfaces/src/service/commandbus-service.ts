@@ -8,40 +8,40 @@ export interface CommandBusService extends CommandHandler {
     /**
      * Register a command to be executed by the given handler
      *
-     * @param commandClass type of command
-     * @param handler the handler instance used to execute the command
+     * @param {CommandClass} commandClass type of command
+     * @param {CommandHandler} handler the handler instance used to execute the command
      */
     register(commandClass: CommandClass, handler: CommandHandler): void;
 
     /**
      * Execute the given command with it's registered command handler
      *
-     * @param command command to execute
+     * @param {Object} command command to execute
      *
-     * @return result from the command handler
+     * @returns {any} result from the command handler
      */
     handle(command: object): any;
 
     /**
      * Check if a command is supported
      *
-     * @param commandId identifier of the command. Can be either the class or the string the class was registered with
+     * @param {CommandIdentifier} commandId identifier of the command. Can be either the class or the string the class was registered with
      *
-     * @returns true if the command is supported, false otherwise
+     * @returns {Boolean} true if the command is supported, false otherwise
      */
     isSupported(commandId: CommandIdentifier): boolean;
 }
 
 /**
- *
+ * Service for executing commands
  */
 export interface CommandHandler {
     /**
      * Handle the execution of the given command
      *
-     * @param command the command to handle
+     * @param {Object} command the command to handle
      *
-     * @return the result of the operation
+     * @returns {any} the result of the operation
      */
     handle(command: object): any;
 }
@@ -55,8 +55,10 @@ export interface CommandMiddleware {
     /**
      * Execute the middleware before passing the command further down the chain
      *
-     * @param command the command that is being handled
-     * @param next the next middleware in the chain
+     * @param {Object} command the command that is being handled
+     * @param {CallableCommandMiddleware} next the next middleware in the chain
+     *
+     * @returns {any} the result of the operation
      */
     execute(command: object, next: CallableCommandMiddleware): any;
 }
@@ -98,7 +100,9 @@ export interface CommandOptions {
 /**
  * Register a class as a command
  *
- * @param options
+ * @param {CommandOptions} options a CommandOptions object containing the id of the command
+ *
+ * @returns {Function} callback which accepts a `CommandClass` and sets the command id
  */
 export function Command(options: CommandOptions) {
     return (commandClass: CommandClass) => {
@@ -113,9 +117,9 @@ function setCommandId(commandClass: CommandClass, id: string) {
 /**
  * Get the registered id of the command
  *
- * @param value either a command or a command identifier
+ * @param {Object | CommandIdentifier} value either a command or a command identifier
  *
- * @returns id of the command
+ * @returns {String} id of the command
  */
 export function getCommandId(value: object | CommandIdentifier): string {
     if (typeof value === 'string') {

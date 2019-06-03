@@ -7,6 +7,10 @@ export interface LimetypesOptions extends StateOptions {
 
 /**
  * Gets an object with all limetypes where name is used as key
+ *
+ * @param {LimetypesOptions} [options] state decorator options
+ *
+ * @returns {Function} state decorator
  */
 export function Limetypes(options: LimetypesOptions = {}) {
     const config: StateDecoratorConfig = {
@@ -18,6 +22,10 @@ export function Limetypes(options: LimetypesOptions = {}) {
 
 /**
  * Get the limetype for the current context
+ *
+ * @param {StateOptions} [options] state decorator options
+ *
+ * @returns {Function} state decorator
  */
 export function CurrentLimetype(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {

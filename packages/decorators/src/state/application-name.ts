@@ -3,6 +3,10 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 /**
  * Get the name of the application
+ *
+ * @param {StateOptions} [options] options for the state selector
+ *
+ * @returns {Function} state decorator
  */
 export function ApplicationName(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {

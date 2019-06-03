@@ -46,7 +46,7 @@ interface ComponentMapping {
  * @param {StateOptions} options decorator options
  * @param {StateDecoratorConfig} config decorator configuration
  *
- * @returns state decorator
+ * @returns {Function} state decorator
  */
 export function createStateDecorator(options: StateOptions, config: StateDecoratorConfig) {
     return (component: any, property: string) => {
@@ -107,7 +107,9 @@ interface Subscription {
  * Extend the lifecycle methods on the component
  *
  * @param {Component} component the component to extend
- * @param {Property[]} properties
+ * @param {Property[]} properties the properties with which to extend the component
+ *
+ * @returns {void}
  */
 function extendLifecycleMethods(component: Component, properties: Property[]) {
     const originalComponentWillLoad = component.componentWillLoad;
@@ -135,9 +137,12 @@ function extendLifecycleMethods(component: Component, properties: Property[]) {
 
 /**
  * Subscribe to changes from the state
+ * Use as `subscription.apply(componentToAugment, [subscriptions, property])`.
  *
- * @param {Subscription[]} subscriptions
- * @param property
+ * @param {Subscription[]} subscriptions existing subscriptions on the component
+ * @param {Property} property property to update when subscription triggers
+ *
+ * @returns {void}
  */
 function subscribe(subscriptions: Subscription[], property: Property) {
     let subscription = subscriptions.find(item => item.instance === this);
@@ -163,7 +168,9 @@ function subscribe(subscriptions: Subscription[], property: Property) {
 /**
  * Unsubscribe to changes from the state
  *
- * @param {Subscription[]} subscriptions
+ * @param {Subscription[]} subscriptions existing subscriptions on the component
+ *
+ * @returns {void}
  */
 function unsubscribe(subscriptions: Subscription[] = []) {
     let subscription = subscriptions.find(item => item.instance === this);
@@ -179,9 +186,13 @@ function unsubscribe(subscriptions: Subscription[] = []) {
 }
 
 /**
+ * Get a function that accepts a state, and updates the given property
+ * on the given component with that state
  *
- * @param instance
- * @param property
+ * @param {any} instance the component to augment
+ * @param {string} property name of the property on the component
+ *
+ * @returns {Function} updates the state
  */
 function mapState(instance: any, property: string) {
     return (state: any) => {
@@ -191,6 +202,7 @@ function mapState(instance: any, property: string) {
 
 /**
  * Create a state subscription
+ * Use as `createSubscription.apply(componentToAugment, [options, property, name, method])`.
  *
  * @param {StateOptions} options options for the selector
  * @param {string} property name of the property on the component
@@ -213,6 +225,8 @@ function createSubscription(options: StateOptions, property: string, name: strin
  *
  * @param {StateOptions} options options for the selector
  * @param {*} scope the current scope to bind to
+ *
+ * @returns {void}
  */
 function bindFunctions(options: StateOptions, scope) {
     if (options.filter) {
