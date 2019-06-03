@@ -32,7 +32,7 @@ function transformFile(filepath) {
     // Fix title, remove "Interface: "
     data = data.replace('# Interface:', '# ');
 
-    // Fix title, remove "Interface: "
+    // Fix title, remove "Class: "
     data = data.replace('# Class:', '# ');
 
     // Fix title, remove "Enumeration: "
