@@ -40,11 +40,11 @@ function transformFile(filepath) {
     data = data.replace('# Enumeration:', '# ');
 
     // Remove hierarchy section
-    regex = /Hierarchy.+?##/gs;
+    regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');
 
     // Remove index section
-    regex = /##\s*Index.+?---/gs;
+    regex = new RegExp('##\\s*Index.+?---', 'gs');
     data = data.replace(regex, '---');
 
     // Make anchors single-tags
