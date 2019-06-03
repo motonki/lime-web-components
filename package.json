@@ -1,49 +1,49 @@
 {
-    "private": true,
-    "description": "Lime Web Components",
-    "author": "Lime Technologies",
-    "license": "ISC",
-    "scripts": {
-        "build": "lerna bootstrap && lerna run build",
-        "start": "npm run generate-api-docs && docz dev",
-        "docz:build": "npm run generate-api-docs && docz build",
-        "docz:publish": "node publish-docs.js",
-        "generate-api-docs": "npx typedoc && node transform-docs.js",
-        "lint": "npm run lint:src && npm run lint:config",
-        "lint:fix": "npm run lint:src:fix && npm run lint:config:fix",
-        "lint:config": "npx tslint --project . -t stylish -c tslint.config.js '*.{ts,tsx}' && npx eslint -c eslint.js '*.js' && npx prettier -l '{!(package*).json,.prettierrc}'",
-        "lint:config:fix": "npx tslint -t stylish --fix -c tslint.config.js '*.{ts,tsx}' && npx eslint --fix -c eslint.js '*.js' && npx prettier --write '{!(package*).json,.prettierrc}'",
-        "lint:src": "npx tslint --project . -t stylish -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'",
-        "lint:src:fix": "npx tslint --project . -t stylish --fix -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^7.6.1",
-        "@commitlint/config-conventional": "^7.6.0",
-        "commitizen": "^3.1.1",
-        "cz-conventional-changelog": "^2.1.0",
-        "docz": "^0.12.5",
-        "eslint": "^5.16.0",
-        "eslint-config-prettier": "^4.3.0",
-        "eslint-plugin-prettier": "^3.1.0",
-        "lerna": "^3.14.1",
-        "replace-in-file": "^4.1.0",
-        "shelljs": "^0.8.3",
-        "typedoc": "^0.14.2",
-        "typedoc-plugin-markdown": "^1.2.1",
-        "typescript": "^3.4.5",
-        "tslint": "^5.16.0",
-        "tslint-config-prettier": "^1.18.0",
-        "tslint-eslint-rules": "^5.4.0",
-        "tslint-plugin-prettier": "^2.0.1",
-        "tslint-react": "^4.0.0",
-        "tslint-sonarts": "^1.9.0"
-    },
-    "directories": {
-        "doc": "doc"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
+  "private": true,
+  "description": "Lime Web Components",
+  "author": "Lime Technologies",
+  "license": "ISC",
+  "scripts": {
+    "build": "lerna bootstrap && lerna run build",
+    "start": "npm run generate-api-docs && docz dev",
+    "docz:build": "npm run generate-api-docs && docz build",
+    "docz:publish": "node publish-docs.js",
+    "generate-api-docs": "npx typedoc && node transform-docs.js",
+    "lint": "npm run lint:src && npm run lint:config",
+    "lint:fix": "npm run lint:src:fix && npm run lint:config:fix",
+    "lint:config": "npx tslint --project . -t stylish -c tslint.config.js '*.{ts,tsx}' && npx eslint -c eslint.js '*.js' && npx prettier -l '{!(package*).json,.prettierrc}'",
+    "lint:config:fix": "npx tslint -t stylish --fix -c tslint.config.js '*.{ts,tsx}' && npx eslint --fix -c eslint.js '*.js' && npx prettier --write '{!(package*).json,.prettierrc}'",
+    "lint:src": "npx tslint --project . -t stylish -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'",
+    "lint:src:fix": "npx tslint --project . -t stylish --fix -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
+    "commitizen": "^3.1.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "docz": "^0.12.5",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "lerna": "^3.14.1",
+    "replace-in-file": "^4.1.0",
+    "shelljs": "^0.8.3",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.2.1",
+    "typescript": "^3.4.5",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
+    "tslint-sonarts": "^1.9.0"
+  },
+  "directories": {
+    "doc": "doc"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
+  }
 }
