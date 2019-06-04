@@ -23,4 +23,9 @@ export class BulkCreateDialogCommand {
      * new related limeobject to be created
      */
     public filter: Expression;
+
+    /**
+     * A list of relation names that are possible to create from the limetype
+     */
+    public relations: string[] = [];
 }
