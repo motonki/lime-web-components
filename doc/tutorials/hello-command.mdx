@@ -11,7 +11,13 @@ webclient.
 
 ## Generate a command
 
-Start by generating a new command with `lime-project` inside your plugin
+The module needs the translation module to exist. In case you don't have that yet in your plugin, run this command inside your project
+
+```
+lime-project generate translation-module
+```
+
+Afterwards you can generate a new command
 
 ```
 lime-project generate command hello
@@ -89,12 +95,15 @@ function onButtonClick() {
 }
 ```
 
-However, in order to add it to an existing menu in the webclient, we need to configure the menu to list our command.
+However, in order to add it to an menu in the webclient, we need to configure the menu to list our command.
 
 ```json
 {
-    actions: [{
-        id: 'my-plugin.hello'
+    "actions": [{
+        "id": "my-plugin.hello"
     }]
 }
 ```
+This can be either the configuration to your own plugin where you then also need to provide the corresponding menu in a web-component
+or the action menu on a table-view. For the latter option add the `actions` json snippet to the table configuration in lime-admin
+for every limetype the command should be available for.
