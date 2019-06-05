@@ -112,7 +112,7 @@ And in our dialog component, we can dispatch it once again
 ```typescript
 export class CustomDialog implements LimeWebComponent {
     @Prop()
-    public command: object;
+    public command: CreateLimeobjectDialogCommand;
 
     private handleClose = () => {}
         // Add custom data to display in the original dialog
