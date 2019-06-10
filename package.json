@@ -2,7 +2,7 @@
   "private": true,
   "description": "Lime Web Components",
   "author": "Lime Technologies",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "lerna bootstrap && lerna run build",
     "start": "npm run generate-api-docs && docz dev",
