@@ -90,4 +90,9 @@ export interface NotificationOptions {
      * Set to true to display the message on multiple lines
      */
     multiline?: boolean;
+
+    /**
+     * Set to true to make the notification dismissible
+     */
+    dismissible?: boolean;
 }
