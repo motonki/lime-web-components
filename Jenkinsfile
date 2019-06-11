@@ -67,19 +67,44 @@ pipeline {
             }
             steps {
                 script {
-                    // if (env.BRANCH_NAME == 'master') {
-                    //     echo 'On master. Running release step.'
-                    //     sh 'make release'
-                    // } else if (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') {
-                    //     echo 'On release-branch. Running release step.'
-                    //     sh "make release"
-                    // } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
-                    //     echo 'On PR branch. Running release step in dry-run mode.'
-                    //     sh "make release_dry_run"
-                    // } else {
-                    //     echo('Unknown branch type. Skipping release step.')
-                    // }
-                    echo('Automatic releases disabled.')
+                    if (env.BRANCH_NAME == 'master' || (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') || (env.BRANCH_NAME.substring(0,3) == 'PR-')) {
+                        RELEASE_COMMAND = ''
+                        if (env.BRANCH_NAME == 'master') {
+                            echo 'On master. Using live release.'
+                            RELEASE_COMMAND = 'release'
+                        } else if (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') {
+                            echo 'On release-branch. Using live release.'
+                            RELEASE_COMMAND = 'release'
+                        } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
+                            echo 'On PR-branch. Using dry-run release.'
+                            RELEASE_COMMAND = 'release_dry_run'
+                        } else {
+                            error 'Config error, check your Jenkinsfile!'
+                        }
+
+                        commits = sh (
+                            script: 'git log --pretty="%s" `git describe --abbrev=0`..HEAD',
+                            returnStdout: true
+                        ).trim().split('\n')
+
+                        DO_RELEASE = false
+
+                        for (i = 0; i < commits.size(); i += 1) {
+                            echo "${commits[i]}"
+                            if (commits[i].startsWith('feat') || commits[i].startsWith('fix')) {
+                                DO_RELEASE = true;
+                            }
+                        }
+
+                        if (DO_RELEASE) {
+                            echo "Found commits that should trigger release! Running release."
+                            sh "make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                        } else {
+                            echo "Found no commits triggering release. Skipping release step."
+                        }
+                    } else {
+                        echo('Unknown branch type. Skipping release step.')
+                    }
                 }
             }
         }

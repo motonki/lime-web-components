@@ -6,7 +6,7 @@
   "scripts": {
     "build": "lerna bootstrap && lerna run build",
     "start": "npm run generate-api-docs && docz dev",
-    "docz:build": "npm run generate-api-docs && docz build",
+    "docz:build": "lerna bootstrap && npm run generate-api-docs && docz build",
     "docz:publish": "node publish-docs.js",
     "generate-api-docs": "npx typedoc && node transform-docs.js",
     "lint": "npm run lint:src && npm run lint:config",
