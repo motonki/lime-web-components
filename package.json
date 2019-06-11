@@ -25,18 +25,18 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "lerna": "^3.14.1",
+    "lerna": "^3.15.0",
     "replace-in-file": "^4.1.0",
     "shelljs": "^0.8.3",
-    "typedoc": "^0.14.2",
-    "typedoc-plugin-markdown": "^1.2.1",
-    "typescript": "^3.4.5",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
-    "tslint-sonarts": "^1.9.0"
+    "tslint-sonarts": "^1.9.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.2.1",
+    "typescript": "^3.4.5"
   },
   "directories": {
     "doc": "doc"
