@@ -45,5 +45,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lundalogik/lime-web-components.git"
   }
 }
