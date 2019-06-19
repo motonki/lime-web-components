@@ -98,7 +98,9 @@ pipeline {
 
                         if (DO_RELEASE) {
                             echo "Found commits that should trigger release! Running release."
-                            sh "make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                            sshagent(['663e4b49-30f6-4c46-a018-a37ba604d7c8']) {
+                                sh "make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                            }
                         } else {
                             echo "Found no commits triggering release. Skipping release step."
                         }
