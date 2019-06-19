@@ -26,4 +26,4 @@ release_dry_run:
 release: BRANCH='master'
 release:
 	@# Bumps and publishes.
-	docker run --rm --user=root -e CI -e GH_USERNAME -e GH_TOKEN -e NPM_TOKEN -e GIT_AUTHOR_NAME -e GIT_AUTHOR_EMAIL -e GIT_COMMITTER_NAME -e GIT_COMMITTER_EMAIL -w /lime $(DOCKER_IMAGE) /bin/bash -c "npm run build && npx lerna version --allow-branch=$(BRANCH) --conventional-commits --create-release=github --yes && npx lerna publish from-git --registry=http://npm.lundalogik.com:4873/"
+	docker run --rm --user=root -e CI -e GH_USERNAME -e GH_TOKEN -e NPM_TOKEN -e GIT_AUTHOR_NAME -e GIT_AUTHOR_EMAIL -e GIT_COMMITTER_NAME -e GIT_COMMITTER_EMAIL -w /lime $(DOCKER_IMAGE) /bin/bash -c "npm run build && npx lerna version --allow-branch=$(BRANCH) --conventional-commits --create-release=github --yes && npx lerna --loglevel=DEBUG publish from-git --registry=http://npm.lundalogik.com:4873/"
