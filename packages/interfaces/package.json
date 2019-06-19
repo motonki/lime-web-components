@@ -5,6 +5,7 @@
   "homepage": "https://github.com/Lundalogik/lime-web-components",
   "license": "ISC",
   "main": "dist/es5/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "directories": {
     "lib": "dist"
