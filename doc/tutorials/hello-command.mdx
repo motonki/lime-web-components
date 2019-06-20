@@ -6,7 +6,7 @@ menu: Tutorials
 
 # Hello, Command!
 
-This guide will show how to generate a new command, connect it to a handler, and trigger the command from a menu in the
+This guide will show how to generate a new command, connect it to a handler, and trigger the command from a menu in the table view in the
 webclient.
 
 ## Generate a command
@@ -91,19 +91,19 @@ To trigger the command by yourself, you can simply send it to the commandbus fro
 ```typescript
 function onButtonClick() {
     const command = new HelloCommand();
-    this.platform.commandbus.handle(command);
+    this.platform.commandBus.handle(command);
 }
 ```
 
-However, in order to add it to a menu in the webclient, we need to configure the menu to list our command.
+However, in order to add it to a menu in the table view in the webclient, we need to configure the menu in the `Administrators page` to list our command.
+This is done by adding the following `actions` json snippet to the `Table` section for the desired limetypes in the `View Editor`.
 
 ```json
 {
     "actions": [{
-        "id": "my-plugin.hello"
+        "id": "my_plugin.hello"
     }]
 }
 ```
-This can be either the configuration to your own plugin where you then also need to provide the corresponding menu in a web-component
-or the action menu on a table view. For the latter option add the `actions` json snippet to the table configuration in lime-admin
-for every limetype the command should be available for.
+
+This can also be the configuration for your own plugin and then you need to provide the corresponding menu in a web-component.

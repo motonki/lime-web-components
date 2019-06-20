@@ -114,14 +114,14 @@ export class CustomDialog implements LimeWebComponent {
     @Prop()
     public command: CreateLimeobjectDialogCommand;
 
-    private handleClose = () => {}
+    private handleClose = () => {
         // Add custom data to display in the original dialog
         this.command.limeobject = {
             name: 'The one big deal!'
         };
 
         // Handle the original command again
-        this.platform.commandbus.handle(this.command);
+        this.platform.commandBus.handle(this.command);
     }
 }
 ```
