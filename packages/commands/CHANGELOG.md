@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/Lundalogik/lime-web-components/compare/v1.2.2...v1.2.3) (2019-06-20)
+
+
+### Bug Fixes
+
+* Revert "fix: dummy commit" ([f1ff607](https://github.com/Lundalogik/lime-web-components/commit/f1ff607))
+
+
+
+
+
 ## [1.2.2](https://github.com/Lundalogik/lime-web-components/compare/v1.2.1...v1.2.2) (2019-06-20)
 
 
