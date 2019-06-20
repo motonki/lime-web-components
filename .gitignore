@@ -3,3 +3,4 @@ dist/
 .vscode/
 .docz/
 doc/api/
+.npmrc
