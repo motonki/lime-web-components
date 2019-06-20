@@ -3,6 +3,6 @@ git remote add origin "https://${GH_TOKEN}@github.com/lundalogik/lime-web-compon
 git push --set-upstream origin master
 
 npm run build
-npx lerna version --loglevel=DEBUG --conventional-commits --create-release=github --yes
 echo _auth=lerna-requires-this > .npmrc
+npx lerna version --loglevel=DEBUG --conventional-commits --create-release=github --yes
 npx lerna --loglevel=INFO publish from-git --registry=http://npm.lundalogik.com:4873/ --yes --no-verify-access
