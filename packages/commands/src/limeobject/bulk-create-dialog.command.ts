@@ -7,6 +7,7 @@ import {
 /**
  * Open a dialog for bulk creating limeobjects
  *
+ *
  * ### Flow example
  * Let's have a look at the general flow by going through the concrete example of adding several persons to a marketing activity:
  * - Go to the table view of persons.
