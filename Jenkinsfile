@@ -98,7 +98,7 @@ pipeline {
 
                         if (DO_RELEASE) {
                             echo "Found commits that should trigger release! Running release."
-                              sh "GH_TOKEN=$GH_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                              sh "GH_USERNAME=$GH_USERNAME GH_TOKEN=$GH_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
                         } else {
                             echo "Found no commits triggering release. Skipping release step."
                         }

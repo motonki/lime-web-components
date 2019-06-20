@@ -1,3 +1,4 @@
+echo "USER: $GH_USERNAME"
 git remote rm origin
 git remote add origin "https://${GH_TOKEN}@github.com/lundalogik/lime-web-components.git"
 npm run build
