@@ -10,4 +10,6 @@ registry=http://npm.lundalogik.com:4873/
 EOL
 
 npx lerna version --loglevel=DEBUG --conventional-commits --create-release=github --yes
-npx lerna --loglevel=INFO publish from-git --registry=http://npm.lundalogik.com:4873/ --yes --no-verify-access
+npx lerna --loglevel=INFO publish from-git --yes --no-verify-access
+
+rm .npmrc
