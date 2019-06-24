@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Lundalogik/lime-web-components/compare/v1.3.0...v1.4.0) (2019-06-24)
+
+
+### Bug Fixes
+
+* **npm:** publish to npmjs.org ([73b94ea](https://github.com/Lundalogik/lime-web-components/commit/73b94ea))
+
+
+### Features
+
+* **task service:** add getStatus method ([fb28b85](https://github.com/Lundalogik/lime-web-components/commit/fb28b85))
+
+
+
+
+
 # [1.3.0](https://github.com/Lundalogik/lime-web-components/compare/v1.2.8...v1.3.0) (2019-06-24)
 
 
