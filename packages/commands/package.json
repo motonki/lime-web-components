@@ -17,8 +17,7 @@
     "build": "tsc && tsc -p tsconfig.es5.json"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "http://npm.lundalogik.com:4873"
+    "access": "public"
   },
   "repository": {
     "type": "git",

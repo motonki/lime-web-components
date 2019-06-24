@@ -5,8 +5,8 @@ git push --set-upstream origin master
 npm run build
 
 cat << EOL >> ".npmrc"
-registry=http://npm.lundalogik.com:4873/
-//npm.lundalogik.com:4873/:_authToken=${NPM_TOKEN}
+registry=https://npmjs.org/
+//npmjs.org/:_authToken=${NPM_TOKEN}
 EOL
 
 npx lerna version --loglevel=DEBUG --conventional-commits --create-release=github --yes
