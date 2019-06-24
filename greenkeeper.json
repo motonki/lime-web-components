@@ -1,0 +1,13 @@
+{
+    "groups": {
+        "default": {
+            "packages": [
+                "package.json",
+                "packages/commands/package.json",
+                "packages/decorators/package.json",
+                "packages/interfaces/package.json",
+                "packages/lime-web-components/package.json"
+            ]
+        }
+    }
+}
