@@ -39,9 +39,16 @@ export default {
         {
             name: 'API reference',
             menu: [
+                'CommandBusService',
+                'Commands',
+                'DialogService',
+                'EventDispatcherService',
+                'HttpService',
                 'LimeWebComponent',
-                'LimeWebComponentPlatform',
-                'LimeWebComponentContext',
+                'NotificationService',
+                'RouteService',
+                'StateServices',
+                'TranslateService'
             ],
         },
     ],
