@@ -52,7 +52,7 @@ function transformFile(filepath) {
 
     // Remove all titles and have them in
     // the mdx files instead
-    data = data.replace(/^# (.*)$/mg, '');
+    data = data.replace(/^# (.*)$/gm, '');
 
     fs.writeFileSync(filepath, data, 'utf8');
 }

@@ -48,7 +48,7 @@ export default {
                 'NotificationService',
                 'RouteService',
                 'StateServices',
-                'TranslateService'
+                'TranslateService',
             ],
         },
     ],
