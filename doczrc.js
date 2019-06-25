@@ -13,7 +13,7 @@ export default {
         },
     },
     menu: [
-        'Index',
+        'Home',
         'Installation',
         {
             name: 'Concepts',
