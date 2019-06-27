@@ -42,9 +42,16 @@ function transformFile(filepath) {
     regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');
 
+    // Remove globals section
+    regex = new RegExp('Globals\\s\\/.+\\/\\n', 'gs');
+    data = data.replace(regex, '');
+
     // Remove index section
-    regex = new RegExp('##\\s*Index.+?---', 'gs');
-    data = data.replace(regex, '---');
+    regex = new RegExp(
+        '##\\s#\\sIndex\\s*####\\s(Methods|Properties).+?(##\\s(Methods|Properties))',
+        'gs'
+    );
+    data = data.replace(regex, '---\n\n$2');
 
     // Make anchors single-tags
     regex = /(<a.+?)><\/a>/g;

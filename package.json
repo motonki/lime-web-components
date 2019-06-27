@@ -34,7 +34,7 @@
     "tslint-react": "^4.0.0",
     "tslint-sonarts": "^1.9.0",
     "typedoc": "^0.14.2",
-    "typedoc-plugin-markdown": "^1.2.1",
+    "typedoc-plugin-markdown": "^2.0.6",
     "typescript": "^3.4.5"
   },
   "directories": {
