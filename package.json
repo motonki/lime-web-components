@@ -52,5 +52,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Lundalogik/lime-web-components.git"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "docz"
+    ]
   }
 }
