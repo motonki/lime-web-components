@@ -23,4 +23,4 @@ Follow these steps:
 
 ## Get help
 
-- Please use the [Lime CRM Forum](https://forum.lime-crm.com/) for support, troubleshooting and questions.
+- If you have a general question, or are in need of support, please open a [Question issue](https://github.com/Lundalogik/lime-web-components/issues/new?template=03_question.md) on GitHub.
