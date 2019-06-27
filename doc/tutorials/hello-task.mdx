@@ -94,10 +94,9 @@ sleep_args = {
 class SleepyTaskHandler(webserver.LimeResource):
     @use_args(sleep_args)
     def post(self, args):
-        identifier = self.application.identifier
         return lime_task.send_task(
                 'sleepy.tasks.tasks.sleep',
-                identifier,
+                self.application,
                 args['timeout']).to_dict()
 
 api.add_resource(SleepyTaskHandler, '/task/sleep/')
