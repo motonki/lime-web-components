@@ -37,6 +37,10 @@
     "typedoc-plugin-markdown": "^2.0.6",
     "typescript": "^3.4.5"
   },
+  "keywords": [
+    "lime web components",
+    "lime crm"
+  ],
   "directories": {
     "doc": "doc"
   },

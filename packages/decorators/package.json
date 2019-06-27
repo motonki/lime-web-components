@@ -7,6 +7,10 @@
   "main": "dist/es5/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "keywords": [
+    "lime web components",
+    "lime crm"
+  ],
   "directories": {
     "lib": "dist"
   },
