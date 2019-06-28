@@ -1,4 +1,7 @@
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    PlatformServiceName,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 /**
@@ -10,7 +13,7 @@ import { createStateDecorator, StateDecoratorConfig } from '../index';
  */
 export function Session(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'application',
+        name: PlatformServiceName.ApplicationState,
     };
     options.map = [getSession, ...(options.map || [])];
 

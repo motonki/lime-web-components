@@ -119,7 +119,8 @@ The `handleClick` method should look something like this
 
 ```tsx
 private async handleClick() {
-    await this.platform.http.put(`api/v1/limeobject/company/${this.context.id}/`, {
+    const http = this.platform.get(PlatformServiceName.Http);
+    await http.put(`api/v1/limeobject/company/${this.context.id}/`, {
         name: `Super ${this.company['name']}!`
     });
     console.log('Company name has been updated!');

@@ -69,7 +69,9 @@ We also need to register our handler with our command in the `Loader` component
 
 export class Loader implements LimePluginLoader {
     public componentWillLoad() {
-        this.platform.commandBus.register(SleepCommand, new SleepHandler(this.platform.state.tasks));
+        const commandBus = this.platform.get(PlatformServiceName.CommandBus);
+        const taskService = this.platform.get(PlatformServiceName.TaskState);
+        commandBus.register(SleepCommand, new SleepHandler(taskService));
     }
 }
 ```

@@ -1,4 +1,7 @@
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    PlatformServiceName,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 /**
@@ -19,7 +22,7 @@ export type DeviceType = 'desktop' | 'tablet' | 'phone';
  */
 export function Device(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'device',
+        name: PlatformServiceName.DeviceState,
     };
 
     return createStateDecorator(options, config);

@@ -1,46 +1,53 @@
-import { HttpService } from './service/http-service.interface';
-import {
-    CommandBusService,
-    DialogService,
-    EventDispatcherService,
-    QueryService,
-    StateService,
-    TaskService,
-} from './service/index';
-import { NotificationService } from './service/notification-service.interface';
-import { RouteService } from './service/route-service.interface';
-import { LimeobjectsStateService } from './service/state/limeobjects-service.interface';
-import { TranslateService } from './service/translate-service.interface';
-
-// lib with functions that the platform can implement
-// plugins will use this interface to make calls to the platform
-
+/**
+ * Service container for the Lime CRM platform
+ */
 export interface LimeWebComponentPlatform {
     type: 'LimeCRMWebClient' | 'LimeCRMDesktopClient';
 
-    state: {
-        limetypes: StateService;
-        limeobjects: LimeobjectsStateService;
-        application: StateService;
-        configs: StateService;
-        filters: StateService;
-        device: StateService;
-        tasks: TaskService;
-    };
+    /**
+     * Get a service
+     *
+     * @param name the name of the service
+     */
+    get(name: PlatformServiceName | string): any;
 
-    translate: TranslateService;
+    /**
+     * Check if a service is currently registered on the platform
+     *
+     * @param name the name of the service
+     */
+    has(name: PlatformServiceName | string): boolean;
 
-    http: HttpService;
+    /**
+     * Register a service on the platform
+     *
+     * Core platform service names are defined by the enum `PlatformServiceName`. Third parties that wants to register
+     * a service should add a prefix to the service name, e.g. the plugin name.
+     *
+     * @param name the name of the service
+     * @param service the service
+     */
+    register(name: PlatformServiceName | string, service: any): void;
+}
 
-    route: RouteService;
+/**
+ * Core platform service names
+ */
+export enum PlatformServiceName {
+    Translate = 'translate',
+    Http = 'http',
+    Route = 'route',
+    Notification = 'notifications',
+    Query = 'query',
+    CommandBus = 'commandBus',
+    Dialog = 'dialog',
+    EventDispatcher = 'eventDispatcher',
 
-    notifications: NotificationService;
-
-    query: QueryService;
-
-    commandBus: CommandBusService;
-
-    dialog: DialogService;
-
-    eventDispatcher: EventDispatcherService;
+    LimetypesState = 'state.limetypes',
+    LimeobjectsState = 'state.limeobjects',
+    ApplicationState = 'state.application',
+    ConfigsState = 'state.configs',
+    FiltersState = 'state.filters',
+    DeviceState = 'state.device',
+    TaskState = 'state.tasks',
 }

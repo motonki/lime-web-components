@@ -126,9 +126,9 @@ export class MyComponent implements LimeWebComponent {
     public platform: LimeWebComponentPlatform;
 
     private async saveData(data: any) {
-        const http: HttpService = this.platform.http;
+        const http: HttpService = this.platform.get(PlatformServiceName.Http);
         const url = `my_addon/my_endpoint/?id=${this.context.id}`;
-        const objectService: LimeobjectsStateService = this.platform.state.limeobjects;
+        const objectService: LimeobjectsStateService = this.platform.get(PlatformServiceName.LimeobjectsState);
 
         // Call endpoint that will save some data on the object
         await http.put(url, data);

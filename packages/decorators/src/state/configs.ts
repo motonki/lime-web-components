@@ -1,4 +1,7 @@
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    PlatformServiceName,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 /**
@@ -17,7 +20,7 @@ export interface ConfigsOptions extends StateOptions {
  */
 export function Configs(options: ConfigsOptions) {
     const config: StateDecoratorConfig = {
-        name: 'configs',
+        name: PlatformServiceName.ConfigsState,
     };
 
     return createStateDecorator(options, config);

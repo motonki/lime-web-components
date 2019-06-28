@@ -1,5 +1,8 @@
 /* tslint:disable:no-invalid-this */
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    LimeWebComponentPlatform,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 
 export * from './state/application-name';
 export * from './state/configs';
@@ -231,7 +234,12 @@ function createSubscription(
     const myOptions = { ...options };
     bindFunctions(myOptions, this);
 
-    const service = this.platform.state[name];
+    const platform: LimeWebComponentPlatform = this.platform;
+    if (!platform.has(name)) {
+        throw new Error(`Service ${name} does not exist`);
+    }
+
+    const service: any = platform.get(name);
 
     return service[method](mapState(this, property), myOptions);
 }
@@ -244,7 +252,7 @@ function createSubscription(
  *
  * @returns {void}
  */
-function bindFunctions(options: StateOptions, scope) {
+function bindFunctions(options: StateOptions, scope: any) {
     if (options.filter) {
         options.filter = options.filter.map(func => func.bind(scope));
     }

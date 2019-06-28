@@ -77,9 +77,13 @@ lifecycle hook, we can add the code that registers our command and make it useab
 ```typescript
 // src/components/lwc-my-plugin-loader/lwc-my-plugin-loader.tsx
 export class Loader implements LimePluginLoader {
+    private commandBus: CommandBus;
+
     public componentWillLoad() {
-        const helloHandler = new HelloHandler(this.platform.notifications);
-        this.platform.commandBus.register(HelloCommand, helloHandler);
+        const notificationService = this.platform.get(PlatformServiceName.Notification);
+        const helloHandler = new HelloHandler(notificationService);
+        this.commandBus = this.platform.get(PlatformServiceName.CommandBus);
+        this.commandBus.register(HelloCommand, helloHandler);
     }
 }
 ```
@@ -91,7 +95,7 @@ To trigger the command by yourself, you can simply send it to the commandbus fro
 ```typescript
 function onButtonClick() {
     const command = new HelloCommand();
-    this.platform.commandBus.handle(command);
+    this.commandBus.handle(command);
 }
 ```
 

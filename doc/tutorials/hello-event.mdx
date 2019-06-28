@@ -51,7 +51,8 @@ export class Loader implements LimePluginLoader {
     }
 
     public componentWillLoad() {
-        this.platform.eventDispatcher.addListener(
+        const eventDispatcher = this.platform.get(PlatformServiceName.EventDispatcher);
+        eventDispatcher.addListener(
             CommandEvent.Received,
             this.handleCommandReceived
         );
@@ -77,7 +78,8 @@ private handleCommandReceived(event: CustomEvent) {
     }
 
     event.preventDefault();
-    this.platform.dialog.create('lwc-my-plugin-custom-dialog');
+    const dialogService = this.platform.get(PlatformServiceName.Dialog);
+    dialogService.create('lwc-my-plugin-custom-dialog');
 }
 ```
 
@@ -103,7 +105,8 @@ private handleCommandReceived(event: CustomEvent) {
     command['_useOriginalHandler'] = true;
 
     event.preventDefault();
-    this.platform.dialog.create('lwc-my-plugin-custom-dialog', { command });
+    const dialogService = this.platform.get(PlatformServiceName.Dialog);
+    dialogService.create('lwc-my-plugin-custom-dialog', { command });
 }
 ```
 
@@ -121,7 +124,8 @@ export class CustomDialog implements LimeWebComponent {
         };
 
         // Handle the original command again
-        this.platform.commandBus.handle(this.command);
+        const commandBus = this.platform.get(PlatformServiceName.CommandBus);
+        commandBus.handle(this.command);
     }
 }
 ```

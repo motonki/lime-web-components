@@ -1,4 +1,7 @@
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    PlatformServiceName,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 export interface LimeobjectsOptions extends StateOptions {
@@ -15,7 +18,7 @@ export interface LimeobjectsOptions extends StateOptions {
  */
 export function Limeobjects(options: LimeobjectsOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limeobjects',
+        name: PlatformServiceName.LimeobjectsState,
     };
 
     return createStateDecorator(options, config);
@@ -30,14 +33,14 @@ export function Limeobjects(options: LimeobjectsOptions = {}) {
  */
 export function CurrentLimeobject(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limeobjects',
+        name: PlatformServiceName.LimeobjectsState,
     };
     options.map = [currentLimeobject, ...(options.map || [])];
 
     return createStateDecorator(options, config);
 }
 
-function currentLimeobject(limeobjects: object) {
+function currentLimeobject(limeobjects: Record<string, Array<{ id: string }>>) {
     const { limetype, id } = this.context; // tslint:disable-line:no-invalid-this
 
     if (!limeobjects[limetype]) {

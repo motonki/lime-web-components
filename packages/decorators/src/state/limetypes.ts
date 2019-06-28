@@ -1,4 +1,7 @@
-import { StateOptions } from '@limetech/lime-web-components-interfaces';
+import {
+    PlatformServiceName,
+    StateOptions,
+} from '@limetech/lime-web-components-interfaces';
 import { createStateDecorator, StateDecoratorConfig } from '../index';
 
 export interface LimetypesOptions extends StateOptions {
@@ -14,7 +17,7 @@ export interface LimetypesOptions extends StateOptions {
  */
 export function Limetypes(options: LimetypesOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limetypes',
+        name: PlatformServiceName.LimetypesState,
     };
 
     return createStateDecorator(options, config);
@@ -29,7 +32,7 @@ export function Limetypes(options: LimetypesOptions = {}) {
  */
 export function CurrentLimetype(options: StateOptions = {}) {
     const config: StateDecoratorConfig = {
-        name: 'limetypes',
+        name: PlatformServiceName.LimetypesState,
     };
     options.map = [currentLimetype, ...(options.map || [])];
 

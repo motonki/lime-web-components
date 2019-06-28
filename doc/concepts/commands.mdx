@@ -39,7 +39,8 @@ class MySpecialHandler implements CommandHandler {
 }
 
 const handler = new MySpecialHandler();
-platform.commandbus.register(MySpecialCommand, handler);
+const commandBus = platform.get(PlatformServiceName.CommandBus);
+commandbus.register(MySpecialCommand, handler);
 ```
 
 Then, if we want to invoke the command, we simply create an instance of it and send it to the commandbus
@@ -49,5 +50,5 @@ const command = new MySpecialCommand();
 command.id = 1001;
 command.limetype = { ... };
 
-platform.commandbus.handle(command);
+commandbus.handle(command);
 ```
