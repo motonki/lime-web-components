@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/Lundalogik/lime-web-components/compare/v1.4.0...v1.4.1) (2019-06-28)
+
+
+### Bug Fixes
+
+* send_task expects app ([5f2eefa](https://github.com/Lundalogik/lime-web-components/commit/5f2eefa))
+
+
+
+
+
 # [1.4.0](https://github.com/Lundalogik/lime-web-components/compare/v1.3.0...v1.4.0) (2019-06-24)
 
 
