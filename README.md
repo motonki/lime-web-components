@@ -6,6 +6,8 @@ To start the dev-server, run `npm start`.
 
 To build the dist folder, run `npm run build`.
 
+Read the full documentation at [https://lundalogik.github.io/lime-web-components/](https://lundalogik.github.io/lime-web-components/)
+
 ## Deploy documentation
 
 Documentation is deployed to GitHub Pages when a new release is built by Jenkins. It can also be deployed manually from a Linux or macOS computer. *NB! Running the publish script locally will update your git config for the repository with the values of the GIT_AUTHOR_EMAIL and GIT_AUTHOR_NAME environment variables. If you set these to anything other than your own user, you may wish to update your config again after publishing. The script will also make changes to a few files, and will checkout these again at the end. Any uncommitted changes you've made to these files **will be lost**. The script also removes the local copy of the branch gh-pages.*

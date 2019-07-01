@@ -9,3 +9,5 @@ Lime Web Components are web components that are used to customize [Lime CRM](htt
 Please use **lime-project** to generate new plugins and components. **lime-web-components** will be installed for you. To keep **lime-web-components** up to date, run `npm up @limetech/lime-web-components` to update within the same major version, or `npm install @limetech/lime-web-components@latest` to update to the latest version, possibly with breaking changes.
 
 For a list of changes, see the [CHANGELOG](https://github.com/Lundalogik/lime-web-components/blob/master/CHANGELOG.md).
+
+Read the full documentation at [https://lundalogik.github.io/lime-web-components/](https://lundalogik.github.io/lime-web-components/)
