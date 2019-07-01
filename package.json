@@ -34,7 +34,7 @@
     "tslint-react": "4.0.0",
     "tslint-sonarts": "1.9.0",
     "typedoc": "0.14.2",
-    "typedoc-plugin-markdown": "2.0.6",
+    "typedoc-plugin-markdown": "2.0.8",
     "typescript": "3.5.2"
   },
   "keywords": [
