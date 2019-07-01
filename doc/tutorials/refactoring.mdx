@@ -1,0 +1,907 @@
+---
+name: Keeping it Simple
+route: /refactoring
+menu: Tutorials
+---
+
+# Keeping it Simple (Refactoring)
+
+Ok, so, you've worked for a while on your component, and you've come quite a way. The component does a number of different things. Great! But, the code is getting complicated and unwieldy…
+
+It's time to refactor!
+
+If you've never heard of *refactoring*, it's simply the process of changing the *code* without changing what the code *does*. This might sound counter-productive at first, but I promise you, it's the very opposite!
+
+In this tutorial, I'll walk you through a real-world example of refactoring a component, going from a single large component, responsible for doing many different things, and in which almost everything is done by one giant render-method, to several small components, each responsible for a single part of the whole, and isolated so that changes to one part does not inadvertently affect another.
+
+Below is a real-world example of a component in development. It's over 350 lines of code, and over 200 of those are in the render-method. Let's see what we can do to make this a little simpler to work with. (You *don't* need to read and understand the file below, it's just there for reference. We'll look at a few specific parts of it below.)
+
+*Please note:* Since this code was a work in progress when copied to this tutorial, the functionality is incomplete, and there are several things that could be done to improve the code besides refactoring. In this tutorial, we will only be focusing on how to refactor the code.
+
+```tsx
+import { Component, Element, h, Prop, State } from '@stencil/core';
+// import { DateType } from '@limetech/lime-elements';
+import { Option } from '@limetech/lime-elements';
+import { CurrentLimeobject, CurrentLimetype, CurrentUser } from '@limetech/lime-web-components-decorators';
+import {
+    LimeWebComponent,
+    LimeWebComponentContext,
+    LimeWebComponentPlatform,
+    LimeobjectsStateService
+} from '@limetech/lime-web-components-interfaces';
+
+const MIN_BVALUE = 0;
+const MIN_REASON_LENGTH = 1;
+
+@Component({
+    tag: 'lwc-solution-business-status',
+    shadow: true,
+    styleUrl: 'lwc-solution-business-status.scss',
+})
+export class BusinessStatus implements LimeWebComponent {
+    @Prop()
+    public platform: LimeWebComponentPlatform;
+
+    @Prop()
+    public context: LimeWebComponentContext;
+
+    @Element()
+    public element: HTMLElement;
+
+    @State()
+    private datetime = new Date();
+
+    @State()
+    private isOpen = false;
+
+    @State()
+    private isOpen500k = false;
+
+    @State()
+    private isOpenTodo = false;
+
+    @State()
+    private isCreateTodo = false;
+
+    @State()
+    private wonlostreason = '';
+
+    @State()
+    private todoNote = '';
+
+    @State()
+    private bValue: number;
+
+    @State()
+    private isConfirmationOpen = false;
+
+    @State()
+    public basicValue: Option;
+
+    @State()
+    public businesstatusValue: Option
+
+    @State()
+    public toggleValue: Option;
+
+    @State()
+    public disabled = false;
+
+    @State()
+    public optionGroup = 0;
+
+    @CurrentLimeobject()
+    @State()
+    private limeobject: object;
+
+    @CurrentLimetype()
+    @State()
+    private limetype: object;
+
+    private basicOptions: Option[] = [];
+
+    componentWillLoad() {
+        if (this.context.limetype === "company" && this.limeobject) {
+            this.basicOptions = this.limetype['properties']['businesstatus']['options'].map(function(i) {return {text: i.text, value: i.key}})
+            this.businesstatusValue = this.basicOptions.find(o => o.value === this.limeobject['businesstatus'])
+        }
+    }
+
+    public render() {
+
+        if (this.context.limetype === "company" && this.limeobject) {
+
+            return [
+                <limel-button
+                    primary={true}
+                    label="Change businesstatus"
+                    onClick={() => {
+                        this.isOpen = true;
+                    }}
+                />,
+                <limel-dialog
+                    heading="Change businesstatus"
+                    open={this.isOpen}
+                    closingActions={{ escapeKey: false, scrimClick: false }}
+                    onClose={() => {
+                        this.isOpen = false;
+                    }}
+                    onClosing={() => {
+                        this.isConfirmationOpen = true;
+                    }}
+                >
+                    <form>
+                        <p>
+                            <limel-select
+                                options={this.basicOptions}
+                                value={this.businesstatusValue}
+                                label="Business Status"
+                                onChange={event => {
+                                    if (event.detail) {
+                                        this.businesstatusValue = event.detail as Option;
+                                    };
+                                }}
+                            />
+                            <p>Value: {JSON.stringify(this.businesstatusValue)}</p>
+                        </p>
+                        {this.businesstatusValue['value'] === 'tender' && this.limeobject['tendervalue'] === 0
+
+                        ?<p>
+                            <limel-input-field
+                                label="Quotevalue"
+                                key="tender"
+                                value={this.bValue ?this.bValue :this.limeobject['tendervalue']}
+                                required={true}
+                                formatNumber={true}
+                                type="number"
+                                invalid={!this.bValueValid()}
+                                onChange={event => {
+                                    this.bValue = +event.detail;
+                                }}
+                            />
+                        </p>
+                        :<p />
+                        }
+                        {this.businesstatusValue['value'] === 'agreement' && this.limeobject['businessvalue'] === 0
+
+                        ?<p>
+                            <limel-input-field
+                                label="Businessvalue"
+                                key="agreement"
+                                value={this.bValue ?this.bValue :this.limeobject['businessvalue']}
+                                formatNumber={true}
+                                type="number"
+                                invalid={!this.bValueValid()}
+                                onChange={event => {
+                                    this.bValue = +event.detail;
+                                }}
+                            />
+                        </p>
+                        :<p />
+                        }
+                        {this.businesstatusValue['value'] === 'agreement'
+                        ?<p>
+                            <limel-input-field
+                                label="Won reason"
+                                required={true}
+                                key="agreement"
+                                value={this.wonlostreason}
+                                invalid={!this.wonLostReasonValid()}
+                                onChange={event => {
+                                    this.wonlostreason = event.detail;
+                                }}
+                            />
+                        </p>
+                        :<p />
+                        }
+                        {this.businesstatusValue['value'] === 'rejection'
+                        ?<p>
+                            <limel-input-field
+                                label="Lost reason"
+                                required={true}
+                                key="rejection"
+                                value={this.wonlostreason}
+                                invalid={!this.wonLostReasonValid()}
+                                onChange={event => {
+                                    this.wonlostreason = event.detail;
+                                }}
+                            />
+                        </p>
+                        :<p />
+                        }
+                    </form>
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            primary={true}
+                            label="Save"
+                            disabled={!this.bValueValid()}
+                            onClick={() => {
+                                this.submitForm();
+                                console.log(this.bValue);
+                                console.log(this.wonlostreason);
+                                this.isCreateTodo = true;
+                                if (this.bValue > 500000) {
+                                    this.isOpen500k = true;
+                                }
+                            }}
+                        />
+                        <limel-button label="Cancel" onClick={this.closeDialog} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+                // TODO
+                <limel-dialog
+                    open={this.isCreateTodo}
+                    closingActions={{ escapeKey: false, scrimClick: false }}
+                    onClose={() => {
+                        this.isCreateTodo = false;
+                    }}
+                >
+                    <p>Do you wanna create a ToDo?</p>
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            primary={true}
+                            label="Yes"
+                            onClick={() => {
+                                this.isOpenTodo = true
+                                this.isCreateTodo = false
+                            }}
+                        />
+                        <limel-button label="No" onClick={() => {this.isCreateTodo = false}} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+                <limel-dialog
+                    heading="Todo"
+                    open={this.isOpenTodo}
+                    closingActions={{ escapeKey: false, scrimClick: false }}
+                    onClose={() => {
+                        this.isOpenTodo = false;
+                    }}
+                >
+                    <form>
+                        <p>
+                            <limel-input-field
+                                label="Comment"
+                                value={this.todoNote}
+                                onChange={event => {
+                                    this.todoNote = event.detail;
+                                }}
+                            />
+                        </p>
+                    </form>
+                    <p>
+                        <limel-date-picker
+                            type="datetime"
+                            label="Date"
+                            value={this.datetime}
+                            onChange={event => { // tslint:disable-line:jsx-no-lambda prettier
+                                this.handleChange(event);
+                            }}
+                        />
+                        <p style={{ 'font-size': 'small' }}>
+                            Value:{' '}
+                            <code>
+                                {this.datetime
+                                    ? this.datetime.toString()
+                                    : JSON.stringify(this.datetime)}
+                            </code>
+                        </p>
+                    </p>
+
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            primary={true}
+                            label="Save todo"
+                            onClick={this.createTodo}
+                        />
+                        <limel-button label="Cancel" onClick={ () => {this.isOpenTodo = false;}} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+                // Credit check
+                <limel-dialog
+                    open={this.isOpen500k}
+                    closingActions={{ escapeKey: false, scrimClick: false }}
+                    onClose={() => {
+                        this.isOpen500k = false;
+                    }}
+                >
+                    <p>THIS IS A LOT OF MONEY.</p>
+                    <limel-button-group slot="button">
+                        <limel-button
+                            label="Ok"
+                            onClick={() => {
+                                this.isOpen500k = false;
+                            }}
+                        />
+                    </limel-button-group>
+                </limel-dialog>,
+            ];
+        }
+    }
+
+    private bValueValid() {
+        return this.bValue > MIN_BVALUE;
+    }
+
+    private wonLostReasonValid() {
+        return this.wonlostreason.length >= MIN_REASON_LENGTH;
+    }
+
+    private submitForm = () => {
+
+        let body = {
+            status: this.businesstatusValue['value'],
+            businessvalue: this.bValue,
+            wonlostreason: this.wonlostreason,
+            business: this.context.id
+        }
+        console.log(body)
+        this.saveData(body)
+        this.closeDialog();
+    };
+
+    private createTodo = () => {
+        let body = {
+            status: this.businesstatusValue['value'],
+            note: this.todoNote,
+            business: this.context.id
+        }
+        console.log(body)
+        // this.saveTodo(this.todoNote);
+        console.log(this.todoNote)
+    }
+
+    private async saveData(body) {
+        // const url = 'changebusinesstatus/update/';
+        const objectService: LimeobjectsStateService = this.platform.state.limeobjects;
+
+        // Call endpoint that will save some data on the object
+        await this.platform.http.post('changebusinesstatus/update/', body);
+
+        // Manually refresh the object in the webclient, if the method is available
+        if (objectService.reloadObject) {
+            objectService.reloadObject(this.context.limetype, this.context.id);
+        }
+
+    }
+
+    // private async saveTodo (body) {
+
+    //     // const http: HttpService = this.platform.http;
+    //     // const url = `my_addon/my_endpoint/?id=${this.context.id}`;
+    //     const objectService: LimeobjectsStateService = this.platform.state.limeobjects;
+
+    //     // Call endpoint that will save some data on the object
+    //     // await http.put(url, data);
+
+    //     // Manually refresh the object in the webclient, if the method is available
+    //     // if (objectService.reloadObject) {
+    //     //     objectService.reloadObject(this.context.limetype, this.context.id);
+    //     // }
+    // }
+
+    private closeDialog = () => {
+        this.isOpen = false;
+    };
+
+    private handleChange(event) {
+        this.datetime = event.detail;
+    };
+}
+```
+
+## Breaking out functions
+
+Let's focus on that render-method for now. Here it is again, but this time, I've removed a lot of detail that we don't need to care about right now:
+
+```tsx
+    public render() {
+
+        if (this.context.limetype === "company" && this.limeobject) {
+
+            return [
+                <limel-button
+                    label="Change businesstatus"
+                    onClick={() => {
+                        this.isOpen = true;
+                    }}
+                />,
+
+
+                <limel-dialog
+                    heading="Change businesstatus"
+                    open={this.isOpen}
+                >
+                    <form>
+                    </form>
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            label="Save"
+                            onClick={() => {
+                                this.isCreateTodo = true;
+                                if (this.bValue > 500000) {
+                                    this.isOpen500k = true;
+                                }
+                            }}
+                        />
+                        <limel-button label="Cancel" onClick={this.closeDialog} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+
+                // TODO
+                <limel-dialog
+                    open={this.isCreateTodo}
+                >
+                    <p>Do you wanna create a ToDo?</p>
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            label="Yes"
+                            onClick={() => {
+                                this.isOpenTodo = true
+                                this.isCreateTodo = false
+                            }}
+                        />
+                        <limel-button label="No" onClick={() => {this.isCreateTodo = false}} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+
+                <limel-dialog
+                    heading="Todo"
+                    open={this.isOpenTodo}
+                >
+                    <form>
+                    </form>
+                    <limel-button-group class="reverse-order" slot="button">
+                        <limel-button
+                            label="Save todo"
+                            onClick={this.createTodo}
+                        />
+                        <limel-button label="Cancel" onClick={ () => {this.isOpenTodo = false;}} />
+                    </limel-button-group>
+                </limel-dialog>,
+
+
+                // Credit check
+                <limel-dialog
+                    open={this.isOpen500k}
+                >
+                    <p>THIS IS A LOT OF MONEY.</p>
+                    <limel-button-group slot="button">
+                        <limel-button
+                            label="Ok"
+                            onClick={() => {
+                                this.isOpen500k = false;
+                            }}
+                        />
+                    </limel-button-group>
+                </limel-dialog>,
+            ];
+        }
+    }
+```
+
+We can see that there is a button, followed by a series of dialogs. When the user clicks the button, the first dialog is opened. If the user clicks the save-button in that dialog, the second dialog is opened, and so on.
+
+Let's start by putting each dialog in a private method, called by the render-method:
+
+```tsx
+    private renderChangeStatusDialog() {
+        return (
+            <limel-dialog
+                heading="Change businesstatus"
+                open={this.isOpen}
+                closingActions={{ escapeKey: false, scrimClick: false }}
+                onClose={() => {
+                    this.isOpen = false;
+                }}
+                onClosing={() => {
+                    this.isConfirmationOpen = true;
+                }}
+            >
+                <form>
+                    <p>
+                        <limel-select
+                            options={this.basicOptions}
+                            value={this.businesstatusValue}
+                            label="Business Status"
+                            onChange={event => {
+                                if (event.detail) {
+                                    this.businesstatusValue = event.detail as Option;
+                                };
+                            }}
+                        />
+                        <p>Value: {JSON.stringify(this.businesstatusValue)}</p>
+                    </p>
+                    {this.businesstatusValue['value'] === 'tender' && this.limeobject['tendervalue'] === 0
+
+                    ?<p>
+                        <limel-input-field
+                            label="Quotevalue"
+                            key="tender"
+                            value={this.bValue ?this.bValue :this.limeobject['tendervalue']}
+                            required={true}
+                            formatNumber={true}
+                            type="number"
+                            invalid={!this.bValueValid()}
+                            onChange={event => {
+                                this.bValue = +event.detail;
+                            }}
+                        />
+                    </p>
+                    :<p />
+                    }
+                    {this.businesstatusValue['value'] === 'agreement' && this.limeobject['businessvalue'] === 0
+
+                    ?<p>
+                        <limel-input-field
+                            label="Businessvalue"
+                            key="agreement"
+                            value={this.bValue ?this.bValue :this.limeobject['businessvalue']}
+                            formatNumber={true}
+                            type="number"
+                            invalid={!this.bValueValid()}
+                            onChange={event => {
+                                this.bValue = +event.detail;
+                            }}
+                        />
+                    </p>
+                    :<p />
+                    }
+                    {this.businesstatusValue['value'] === 'agreement'
+                    ?<p>
+                        <limel-input-field
+                            label="Won reason"
+                            required={true}
+                            key="agreement"
+                            value={this.wonlostreason}
+                            invalid={!this.wonLostReasonValid()}
+                            onChange={event => {
+                                this.wonlostreason = event.detail;
+                            }}
+                        />
+                    </p>
+                    :<p />
+                    }
+                    {this.businesstatusValue['value'] === 'rejection'
+                    ?<p>
+                        <limel-input-field
+                            label="Lost reason"
+                            required={true}
+                            key="rejection"
+                            value={this.wonlostreason}
+                            invalid={!this.wonLostReasonValid()}
+                            onChange={event => {
+                                this.wonlostreason = event.detail;
+                            }}
+                        />
+                    </p>
+                    :<p />
+                    }
+                </form>
+                <limel-button-group class="reverse-order" slot="button">
+                    <limel-button
+                        primary={true}
+                        label="Save"
+                        disabled={!this.bValueValid()}
+                        onClick={() => {
+                            this.submitForm();
+                            console.log(this.bValue);
+                            console.log(this.wonlostreason);
+                            this.isCreateTodo = true;
+                            if (this.bValue > 500000) {
+                                this.isOpen500k = true;
+                            }
+                        }}
+                    />
+                    <limel-button label="Cancel" onClick={this.closeDialog} />
+                </limel-button-group>
+            </limel-dialog>
+        );
+    }
+
+    private renderCreateTodoDialog() {
+        return (
+            <limel-dialog
+                open={this.isCreateTodo}
+                closingActions={{ escapeKey: false, scrimClick: false }}
+                onClose={() => {
+                    this.isCreateTodo = false;
+                }}
+            >
+                <p>Do you wanna create a ToDo?</p>
+                <limel-button-group class="reverse-order" slot="button">
+                    <limel-button
+                        primary={true}
+                        label="Yes"
+                        onClick={() => {
+                            this.isOpenTodo = true
+                            this.isCreateTodo = false
+                        }}
+                    />
+                    <limel-button label="No" onClick={() => {this.isCreateTodo = false}} />
+                </limel-button-group>
+            </limel-dialog>
+        );
+    }
+
+    private renderOpenTodoDialog() {
+        return (
+            <limel-dialog
+                heading="Todo"
+                open={this.isOpenTodo}
+                closingActions={{ escapeKey: false, scrimClick: false }}
+                onClose={() => {
+                    this.isOpenTodo = false;
+                }}
+            >
+                <form>
+                    <p>
+                        <limel-input-field
+                            label="Comment"
+                            value={this.todoNote}
+                            onChange={event => {
+                                this.todoNote = event.detail;
+                            }}
+                        />
+                    </p>
+                </form>
+                <p>
+                    <limel-date-picker
+                        type="datetime"
+                        label="Date"
+                        value={this.datetime}
+                        onChange={event => { // tslint:disable-line:jsx-no-lambda prettier
+                            this.handleChange(event);
+                        }}
+                    />
+                    <p style={{ 'font-size': 'small' }}>
+                        Value:{' '}
+                        <code>
+                            {this.datetime
+                                ? this.datetime.toString()
+                                : JSON.stringify(this.datetime)}
+                        </code>
+                    </p>
+                </p>
+
+                <limel-button-group class="reverse-order" slot="button">
+                    <limel-button
+                        primary={true}
+                        label="Save todo"
+                        onClick={this.createTodo}
+                    />
+                    <limel-button label="Cancel" onClick={ () => {this.isOpenTodo = false;}} />
+                </limel-button-group>
+            </limel-dialog>
+        );
+    }
+
+    private renderCreditCheckDialog() {
+        return (
+            <limel-dialog
+                open={this.isOpen500k}
+                closingActions={{ escapeKey: false, scrimClick: false }}
+                onClose={() => {
+                    this.isOpen500k = false;
+                }}
+            >
+                <p>THIS IS A LOT OF MONEY.</p>
+                <limel-button-group slot="button">
+                    <limel-button
+                        label="Ok"
+                        onClick={() => {
+                            this.isOpen500k = false;
+                        }}
+                    />
+                </limel-button-group>
+            </limel-dialog>
+        );
+    }
+```
+
+This is already a slight improvement. Since we gave each function a descriptive name, it's easier to understand what each dialog is for.
+
+Let's look at what's left of the render-method:
+
+```tsx
+    public render() {
+
+        if (this.context.limetype === "company" && this.limeobject) {
+
+            return [
+                <limel-button
+                    primary={true}
+                    label="Change businesstatus"
+                    onClick={() => {
+                        this.isOpen = true;
+                    }}
+                />,
+
+            ];
+        }
+    }
+```
+
+Not very much, as it turns out. But, right now, the dialogs are never going to be rendered at all, only the button is. Let's fix that:
+
+```tsx
+    public render() {
+
+        if (this.context.limetype === "company" && this.limeobject) {
+
+            return [
+                <limel-button
+                    primary={true}
+                    label="Change businesstatus"
+                    onClick={() => {
+                        this.isOpen = true;
+                    }}
+                />,
+                this.renderChangeStatusDialog(),
+                this.renderCreateTodoDialog(),
+                this.renderOpenTodoDialog(),
+                this.renderCreditCheckDialog(),
+            ];
+        }
+    }
+```
+
+That's pretty nice, isn't it?
+
+The `renderChangeStatusDialog` function is still pretty complicated, so let's break that down in similar fashion:
+
+```tsx
+    private renderChangeStatusDialog() {
+        return (
+            <limel-dialog
+                heading="Change businesstatus"
+                open={this.isOpen}
+                closingActions={{ escapeKey: false, scrimClick: false }}
+                onClose={() => {
+                    this.isOpen = false;
+                }}
+                onClosing={() => {
+                    this.isConfirmationOpen = true;
+                }}
+            >
+                <form>
+                    {this.renderStatusSelect()}
+                    {this.renderQuoteValueInput()}
+                    {this.renderBusinessValueInput()}
+                    {this.renderWonReasonInput()}
+                    {this.renderLostReasonInput()}
+                </form>
+                {this.renderButtons()}
+            </limel-dialog>
+        );
+    }
+
+    private renderStatusSelect() {
+        return (
+            <p>
+                <limel-select
+                    options={this.basicOptions}
+                    value={this.businesstatusValue}
+                    label="Business Status"
+                    onChange={event => {
+                        if (event.detail) {
+                            this.businesstatusValue = event.detail as Option;
+                        };
+                    }}
+                />
+                <p>Value: {JSON.stringify(this.businesstatusValue)}</p>
+            </p>
+        );
+    }
+
+    private renderQuoteValueInput() {
+        if (this.businesstatusValue['value'] === 'tender' && this.limeobject['tendervalue'] === 0) {
+            return (
+                <p>
+                    <limel-input-field
+                        label="Quotevalue"
+                        key="tender"
+                        value={this.bValue ?this.bValue :this.limeobject['tendervalue']}
+                        required={true}
+                        formatNumber={true}
+                        type="number"
+                        invalid={!this.bValueValid()}
+                        onChange={event => {
+                            this.bValue = +event.detail;
+                        }}
+                    />
+                </p>
+            );
+        }
+    }
+
+    private renderBusinessValueInput() {
+        if (this.businesstatusValue['value'] === 'agreement' && this.limeobject['businessvalue'] === 0) {
+            return (
+                <p>
+                    <limel-input-field
+                        label="Businessvalue"
+                        key="agreement"
+                        value={this.bValue ?this.bValue :this.limeobject['businessvalue']}
+                        formatNumber={true}
+                        type="number"
+                        invalid={!this.bValueValid()}
+                        onChange={event => {
+                            this.bValue = +event.detail;
+                        }}
+                    />
+                </p>
+            );
+        }
+    }
+
+    private renderWonReasonInput() {
+        if (this.businesstatusValue['value'] === 'agreement') {
+            return (
+                <p>
+                    <limel-input-field
+                        label="Won reason"
+                        required={true}
+                        key="agreement"
+                        value={this.wonlostreason}
+                        invalid={!this.wonLostReasonValid()}
+                        onChange={event => {
+                            this.wonlostreason = event.detail;
+                        }}
+                    />
+                </p>
+            );
+        }
+    }
+
+    private renderLostReasonInput() {
+        if (this.businesstatusValue['value'] === 'rejection') {
+            return (
+                <p>
+                    <limel-input-field
+                        label="Lost reason"
+                        required={true}
+                        key="rejection"
+                        value={this.wonlostreason}
+                        invalid={!this.wonLostReasonValid()}
+                        onChange={event => {
+                            this.wonlostreason = event.detail;
+                        }}
+                    />
+                </p>
+            );
+        }
+    }
+
+    private renderButtons() {
+        return (
+            <limel-button-group class="reverse-order" slot="button">
+                <limel-button
+                    primary={true}
+                    label="Save"
+                    disabled={!this.bValueValid()}
+                    onClick={() => {
+                        this.submitForm();
+                        console.log(this.bValue);
+                        console.log(this.wonlostreason);
+                        this.isCreateTodo = true;
+                        if (this.bValue > 500000) {
+                            this.isOpen500k = true;
+                        }
+                    }}
+                />
+                <limel-button label="Cancel" onClick={this.closeDialog} />
+            </limel-button-group>
+        );
+    }
+```
+
+Notice how every time we break a function down, we're left with descriptive function calls, and all the details of the implementation is moved further down in the file? This is a good thing. It makes it easy to get an overview of what a function does, without having to wade through a flood of implementation details. And if we need those details, we can just scroll down to where the relevant function is implemented.
+
+In the next section, we'll take a look at how to break these functions out into separate components.
+
+*To be continued…*
