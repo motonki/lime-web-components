@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Lundalogik/lime-web-components/compare/v1.4.1...v2.0.0) (2019-07-04)
+
+
+### Code Refactoring
+
+* **platform:** add get method in favor of public properties ([5d0c903](https://github.com/Lundalogik/lime-web-components/commit/5d0c903))
+
+
+### BREAKING CHANGES
+
+* **platform:** Removed all public properties, services are now retrieved with the `get` method.
+New services can be registered with the `register` method which can also be used by 3rd parties to
+register new services on the platform. Core platform service names are exposed in the
+`PlatformServiceName` enum.
+
+
+
+
+
 ## [1.4.1](https://github.com/Lundalogik/lime-web-components/compare/v1.4.0...v1.4.1) (2019-06-28)
 
 **Note:** Version bump only for package @limetech/lime-web-components-decorators
