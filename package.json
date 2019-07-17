@@ -18,7 +18,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
-    "commitizen": "3.1.1",
+    "commitizen": "3.1.2",
     "cz-conventional-changelog": "2.1.0",
     "docz": "0.12.5",
     "eslint": "6.0.1",
