@@ -45,6 +45,18 @@ export interface NotificationService {
      * Otherwise, the promise will resolve to false.
      */
     notify(message: string, options?: NotificationOptions): Promise<boolean>;
+
+    /**
+     * Display a non-blocking and non-transient message
+     *
+     * @param {string} message message to display in the banner
+     * @param {ReportOptions} options
+     *
+     * @returns {Promise<boolean>} a promise that will be resolved when the notification is closed.
+     * If the notification has an action button and it was pressed, the promise will resolve to true.
+     * Otherwise, the promise will resolve to false.
+     */
+    report(message: string, options?: ReportOptions): Promise<boolean>;
 }
 
 /**
@@ -95,4 +107,19 @@ export interface NotificationOptions {
      * Set to true to make the notification dismissible
      */
     dismissible?: boolean;
+}
+
+/**
+ * Options for reports
+ */
+export interface ReportOptions {
+    /**
+     * Text to display on the action button
+     */
+    actionText?: string;
+
+    /**
+     * Icon to display on the banner
+     */
+    icon?: string;
 }
