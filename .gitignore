@@ -4,3 +4,4 @@ dist/
 .docz/
 doc/api/
 .npmrc
+.idea
