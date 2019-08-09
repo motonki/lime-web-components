@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Lundalogik/lime-web-components/compare/v2.0.0...v2.1.0) (2019-08-09)
+
+
+### Features
+
+* **notification-service:** report non-blocking and non-transient message ([e02ff9f](https://github.com/Lundalogik/lime-web-components/commit/e02ff9f))
+
+
+
+
+
 # [2.0.0](https://github.com/Lundalogik/lime-web-components/compare/v1.4.1...v2.0.0) (2019-07-04)
 
 
