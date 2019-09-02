@@ -3,7 +3,18 @@ const fs = require('fs');
 const replace = require('replace-in-file');
 const argv = require('yargs').argv;
 
-const version = argv.v || '0.0.0-dev';
+const currentVersion = require('./packages/lime-web-components/package.json')
+    .version;
+let version;
+
+if (argv.v) {
+    // If the argument `v` is set to `'current'`, use the actual current version.
+    // Otherwise, use the value of the argument.
+    version = argv.v === 'current' ? currentVersion : argv.v;
+} else {
+    // If the argument `v` isn't set, default to '0.0.0-dev'.
+    version = '0.0.0-dev';
+}
 
 const pruneDev = argv.pruneDev !== undefined;
 const removeSpecific = !!argv.remove;
@@ -24,6 +35,8 @@ usage: npm run docz:publish [-- [--v=<version>] [--remove=<pattern>] [--pruneDev
                                 [--noTeardown] [--dryRun] [--noCleanOnFail]]
 
     --v             The version number for this release of the documentation.
+                    Use 'current' to extract the current version from
+                    ./packages/lime-web-components/package.json
                     Defaults to '0.0.0-dev'.
     --remove        Removes all versions matching the given filename-pattern.
     --pruneDev      Alias for --remove=0.0.0-dev*

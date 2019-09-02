@@ -13,7 +13,8 @@
     "lint:config": "npx tslint --project . -t stylish -c tslint.config.js '*.{ts,tsx}' && npx eslint -c eslint.js '*.js' && npx prettier -l '{!(package*|lerna).json,.prettierrc}'",
     "lint:config:fix": "npx tslint -t stylish --fix -c tslint.config.js '*.{ts,tsx}' && npx eslint --fix -c eslint.js '*.js' && npx prettier --write '{!(package*|lerna).json,.prettierrc}'",
     "lint:src": "npx tslint --project . -t stylish -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'",
-    "lint:src:fix": "npx tslint --project . -t stylish --fix -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'"
+    "lint:src:fix": "npx tslint --project . -t stylish --fix -c tslint.js 'packages/**/src/**/*.{interface.ts,ts,tsx}'",
+    "postpublish": "npm run docz:publish -- --v=current"
   },
   "devDependencies": {
     "@commitlint/cli": "8.1.0",
