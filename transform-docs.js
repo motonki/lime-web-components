@@ -39,6 +39,10 @@ function transformFile(filepath) {
     );
     data = data.replace(regex, '$2');
 
+    // Remove "Defined in …" line
+    regex = /(\*Defined in .*)/g;
+    data = data.replace(regex, '');
+
     // Make anchors single-tags
     regex = /(<a.+?)><\/a>/g;
     data = data.replace(regex, '$1/>');
