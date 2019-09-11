@@ -59,6 +59,5 @@
     "ignore": [
       "docz"
     ]
-  },
-  "publishConfig": {"registry": "https://npm.pkg.github.com/Lundalogik"}
+  }
 }
