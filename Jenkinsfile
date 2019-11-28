@@ -77,8 +77,9 @@ pipeline {
                             echo 'On release-branch. Using live release.'
                             RELEASE_COMMAND = 'release'
                         } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
-                            echo 'On PR-branch. Using dry-run release.'
+                            echo 'On PR-branch. Force dry-run release and building docz.'
                             RELEASE_COMMAND = 'release_dry_run'
+                            FORCE = true
                         } else if (env.BRANCH_NAME.substring(0,12) == 'greenkeeper/') {
                             echo 'On greenkeeper-branch. Force dry-run release and building docz.'
                             RELEASE_COMMAND = 'release_dry_run'
@@ -104,7 +105,7 @@ pipeline {
                         if (DO_RELEASE || FORCE) {
                             if (DO_RELEASE) {
                                 echo "Found commits that should trigger release! Running release with command ${RELEASE_COMMAND}"
-                            } else if (FORCE) {
+                            } else {
                                 echo "--- FORCING release with command ${RELEASE_COMMAND} ---"
                             }
                             sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
