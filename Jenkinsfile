@@ -67,8 +67,9 @@ pipeline {
             }
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'master' || (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') || (env.BRANCH_NAME.substring(0,3) == 'PR-')) {
+                    if (env.BRANCH_NAME == 'master' || (env.BRANCH_NAME.length() > 8 && env.BRANCH_NAME.substring(0,8) == 'release-') || (env.BRANCH_NAME.substring(0,3) == 'PR-') || (env.BRANCH_NAME.substring(0,12) == 'greenkeeper/')) {
                         RELEASE_COMMAND = ''
+                        FORCE = false
                         if (env.BRANCH_NAME == 'master') {
                             echo 'On master. Using live release.'
                             RELEASE_COMMAND = 'release'
@@ -78,6 +79,10 @@ pipeline {
                         } else if (env.BRANCH_NAME.substring(0,3) == 'PR-') {
                             echo 'On PR-branch. Using dry-run release.'
                             RELEASE_COMMAND = 'release_dry_run'
+                        } else if (env.BRANCH_NAME.substring(0,12) == 'greenkeeper/') {
+                            echo 'On greenkeeper-branch. Force dry-run release and building docz.'
+                            RELEASE_COMMAND = 'release_dry_run'
+                            FORCE = true
                         } else {
                             error 'Config error, check your Jenkinsfile!'
                         }
@@ -96,9 +101,13 @@ pipeline {
                             }
                         }
 
-                        if (DO_RELEASE) {
-                            echo "Found commits that should trigger release! Running release."
-                              sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                        if (DO_RELEASE || FORCE) {
+                            if (DO_RELEASE) {
+                                echo "Found commits that should trigger release! Running release with command ${RELEASE_COMMAND}"
+                            } else if (FORCE) {
+                                echo "--- FORCING release with command ${RELEASE_COMMAND} ---"
+                            }
+                            sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
                         } else {
                             echo "Found no commits triggering release. Skipping release step."
                         }
