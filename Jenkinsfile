@@ -108,7 +108,7 @@ pipeline {
                             } else {
                                 echo "--- FORCING release with command ${RELEASE_COMMAND} ---"
                             }
-                            sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=${env.BRANCH_NAME}"
+                            sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=\"${env.BRANCH_NAME}\""
                         } else {
                             echo "Found no commits triggering release. Skipping release step."
                         }
