@@ -63,7 +63,8 @@ export type PropertyType =
     | 'hasone'
     | 'hasmany'
     | 'belongsto'
-    | 'hasandbelongstomany';
+    | 'hasandbelongstomany'
+    | 'system';
 
 export interface Acl {
     delete: boolean;
