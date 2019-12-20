@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Lundalogik/lime-web-components/compare/v2.1.0...v2.2.0) (2019-12-20)
+
+
+### Features
+
+* **limetype interface:** adds system type to property type ([3e1799e](https://github.com/Lundalogik/lime-web-components/commit/3e1799e4393df1facf7b0d4d9357140c06c3ad31))
+
+
+### Reverts
+
+* Revert "build: publish to github registry" ([f535e0d](https://github.com/Lundalogik/lime-web-components/commit/f535e0df2d93382aa440ffbcc88542f1dff83cab))
+
+
+
+
+
 # [2.1.0](https://github.com/Lundalogik/lime-web-components/compare/v2.0.0...v2.1.0) (2019-08-09)
 
 
