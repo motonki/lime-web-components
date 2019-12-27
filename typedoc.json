@@ -8,5 +8,6 @@
     "excludePrivate": true,
     "excludeProtected": true,
     "excludeExternals": true,
-    "hideBreadcrumbs": true
+    "hideBreadcrumbs": true,
+    "hideIndexes": true
 }

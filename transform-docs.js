@@ -28,13 +28,6 @@ function transformFile(filepath) {
     regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');
 
-    // Remove index section
-    regex = new RegExp(
-        '##\\s\\sIndex\\s*###\\s(Methods|Properties).+?\n(##\\s(Methods|Properties))',
-        'gs'
-    );
-    data = data.replace(regex, '$2');
-
     // Remove "Defined in …" line
     regex = /(\*Defined in .*)/g;
     data = data.replace(regex, '');
