@@ -24,10 +24,6 @@ function transformFile(filepath) {
     let regex = /.+?\n/;
     data = data.replace(regex, '');
 
-    // Remove second line, it contains a breadcrumb
-    regex = /.+?\n/;
-    data = data.replace(regex, '');
-
     // Remove hierarchy section
     regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');

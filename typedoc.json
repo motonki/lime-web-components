@@ -7,5 +7,6 @@
     "excludeNotExported": true,
     "excludePrivate": true,
     "excludeProtected": true,
-    "excludeExternals": true
+    "excludeExternals": true,
+    "hideBreadcrumbs": true
 }
