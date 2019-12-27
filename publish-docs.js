@@ -289,7 +289,5 @@ function teardown(finished) {
         shell.exec('git checkout doczrc.js');
         shell.echo('Removing worktree for docsDist.');
         shell.exec('git worktree remove docsDist --force');
-        shell.echo('Deleting local branch gh-pages.');
-        shell.exec('git branch -D gh-pages');
     }
 }
