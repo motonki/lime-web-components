@@ -28,10 +28,6 @@ function transformFile(filepath) {
     regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');
 
-    // Remove "Defined in …" line
-    regex = /(\*Defined in .*)/g;
-    data = data.replace(regex, '');
-
     // Make anchors single-tags
     regex = /(<a.+?)><\/a>/g;
     data = data.replace(regex, '$1/>');

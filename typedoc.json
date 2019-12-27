@@ -9,5 +9,6 @@
     "excludeProtected": true,
     "excludeExternals": true,
     "hideBreadcrumbs": true,
-    "hideIndexes": true
+    "hideIndexes": true,
+    "hideSources": true
 }
