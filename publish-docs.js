@@ -288,6 +288,6 @@ function teardown(finished) {
     if (finished || cleanOnFail) {
         shell.exec('git checkout doczrc.js');
         shell.echo('Removing worktree for docsDist.');
-        shell.exec('git worktree remove docsDist --force');
+        shell.exec('git worktree remove --force docsDist');
     }
 }
