@@ -38,6 +38,7 @@ usage: npm run docz:publish [-- [--v=<version>] [--remove=<pattern>] [--pruneDev
                     Use 'current' to extract the current version from
                     ./packages/lime-web-components/package.json
                     Defaults to '0.0.0-dev'.
+    --dryRun        Use dry-run mode. Do not push or publish any changes.
     --remove        Removes all versions matching the given filename-pattern.
     --pruneDev      Alias for --remove=0.0.0-dev*
     --noSetup       Run no setup. Only use this if you have previously run the setup step
@@ -247,9 +248,11 @@ function commit(message) {
 
     shell.exec('git add -A --ignore-errors');
 
+    const allowEmptyCommitOnDryRun = dryRun ? '--allow-empty' : '';
+
     if (
         shell.exec(
-            `git commit --author "$GIT_AUTHOR_NAME <$GIT_AUTHOR_EMAIL>" -m "${message}"`
+            `git commit --author "$GIT_AUTHOR_NAME <$GIT_AUTHOR_EMAIL>" -m "${message}" ${allowEmptyCommitOnDryRun}`
         ).code !== 0
     ) {
         shell.echo('git commit failed!');
