@@ -20,10 +20,6 @@ function traverseFileSystem(path) {
 function transformFile(filepath) {
     let data = fs.readFileSync(filepath, 'utf8');
 
-    // Remove first line, it contains a broken link to the readme file
-    let regex = /.+?\n/;
-    data = data.replace(regex, '');
-
     // Remove hierarchy section
     regex = new RegExp('Hierarchy.+?##', 'gs');
     data = data.replace(regex, '');
