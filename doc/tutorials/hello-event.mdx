@@ -84,7 +84,9 @@ export class Loader implements LimePluginLoader {
     }
 
     public componentWillLoad() {
-        const eventDispatcher = this.platform.get(PlatformServiceName.EventDispatcher);
+        const eventDispatcher = this.platform.get(
+            PlatformServiceName.EventDispatcher
+        );
         eventDispatcher.addListener(
             CommandEvent.Received,
             this.handleCommandReceived
