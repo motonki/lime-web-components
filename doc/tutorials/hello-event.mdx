@@ -47,7 +47,7 @@ export class CustomDialog implements LimeWebComponent {
         );
     }
 
-    private handleClose = () => {}
+    private handleClose() {}
 }
 ```
 
@@ -164,7 +164,15 @@ export class CustomDialog implements LimeWebComponent {
     @Prop()
     public command: CreateLimeobjectDialogCommand;
 
-    private handleClose = () => {
+    …
+
+    public constructor() {
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    …
+
+    private handleClose() {
         // Add custom data to display in the original dialog
         this.command.limeobject = {
             name: 'The one big deal!'
