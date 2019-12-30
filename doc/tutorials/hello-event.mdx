@@ -21,11 +21,24 @@ The custom dialog will require some new functionality to replace the one in the 
 scope for this guide and we will only render a message. Feel free to add something more interesting!
 
 ```typescript
+import {
+    LimeWebComponent,
+    LimeWebComponentContext,
+    LimeWebComponentPlatform,
+} from '@limetech/lime-web-components-interfaces';
+import { Component, h, Prop } from '@stencil/core';
+
 @Component({
     tag: 'lwc-my-plugin-custom-dialog',
     shadow: true,
 })
 export class CustomDialog implements LimeWebComponent {
+    @Prop()
+    public platform: LimeWebComponentPlatform;
+
+    @Prop()
+    public context: LimeWebComponentContext;
+
     public render() {
         return (
             <limel-dialog open={true} onClose={this.handleClose}>
@@ -45,7 +58,27 @@ To prevent the default dialog from appearing when a new Limeobject is created, w
 done in the loader component that is generated automatically.
 
 ```typescript
+import { CreateLimeobjectDialogCommand } from '@limetech/lime-web-components-commands';
+import {
+    CommandEvent,
+    LimePluginLoader,
+    LimeWebComponentContext,
+    LimeWebComponentPlatform,
+    PlatformServiceName,
+} from '@limetech/lime-web-components-interfaces';
+import { Component, Prop } from '@stencil/core';
+
+@Component({
+    tag: 'lwc-my-plugin-loader',
+    shadow: true,
+})
 export class Loader implements LimePluginLoader {
+    @Prop()
+    public platform: LimeWebComponentPlatform;
+
+    @Prop()
+    public context: LimeWebComponentContext;
+
     public constructor() {
         this.handleCommandReceived = this.handleCommandReceived.bind(this);
     }
@@ -56,6 +89,10 @@ export class Loader implements LimePluginLoader {
             CommandEvent.Received,
             this.handleCommandReceived
         );
+    }
+
+    public componentDidUnload() {
+        // tslint:disable-line:no-empty
     }
 
     private handleCommandReceived(event: CustomEvent) {}
@@ -113,6 +150,16 @@ private handleCommandReceived(event: CustomEvent) {
 And in our dialog component, we can dispatch it once again
 
 ```typescript
+import { CreateLimeobjectDialogCommand } from '@limetech/lime-web-components-commands';
+import {
+    LimeWebComponent,
+    LimeWebComponentContext,
+    LimeWebComponentPlatform,
+    PlatformServiceName,
+} from '@limetech/lime-web-components-interfaces';
+
+…
+
 export class CustomDialog implements LimeWebComponent {
     @Prop()
     public command: CreateLimeobjectDialogCommand;
