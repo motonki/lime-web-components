@@ -9,5 +9,6 @@
                 "packages/lime-web-components/package.json"
             ]
         }
-    }
+    },
+    "ignore": ["docz"]
 }
