@@ -18,7 +18,7 @@
     "postpublish:dry-run": "npm run docz:publish -- --v=current --dryRun"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.2.0",
+    "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.2.0",
     "commitizen": "4.0.3",
     "cz-conventional-changelog": "3.0.2",
