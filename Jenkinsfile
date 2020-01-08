@@ -106,7 +106,7 @@ pipeline {
                             if (DO_RELEASE) {
                                 echo "Found commits that should trigger release! Running release with command ${RELEASE_COMMAND}"
                             } else {
-                                echo "--- FORCING release with command ${RELEASE_COMMAND} ---"
+                                echo "--- FORCING release with command ${RELEASE_COMMAND} BRANCH=\"${env.BRANCH_NAME}\" ---"
                             }
                             sh "GH_TOKEN=$GH_TOKEN NPM_TOKEN=$NPM_TOKEN make ${RELEASE_COMMAND} BRANCH=\"${env.BRANCH_NAME}\""
                         } else {
