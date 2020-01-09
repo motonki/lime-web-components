@@ -136,7 +136,7 @@ function extendLifecycleMethods(component: Component, properties: Property[]) {
         });
 
         if (originalComponentWillLoad) {
-            originalComponentWillLoad.apply(this, args);
+            return originalComponentWillLoad.apply(this, args);
         }
     };
 
