@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/Lundalogik/lime-web-components/compare/v2.2.0...v2.2.1) (2020-01-09)
+
+
+### Bug Fixes
+
+* **decorators:** return value from original componentWillLoad in state decorators ([e91faa7](https://github.com/Lundalogik/lime-web-components/commit/e91faa7583afd56685fa4dc39292c5fcd7dfb969)), closes [#104](https://github.com/Lundalogik/lime-web-components/issues/104) [#75](https://github.com/Lundalogik/lime-web-components/issues/75)
+
+
+
+
+
 # [2.2.0](https://github.com/Lundalogik/lime-web-components/compare/v2.1.0...v2.2.0) (2019-12-20)
 
 **Note:** Version bump only for package @limetech/lime-web-components-decorators
